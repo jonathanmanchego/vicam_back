@@ -13,30 +13,58 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const banco_1 = __importDefault(require("../models/banco"));
-class BancoController {
-    save(req) {
-        return __awaiter(this, void 0, void 0, function* () {
-        });
-    }
-    getBancos(req, res) {
+const cuentaAhorro_1 = __importDefault(require("../models/cuentaAhorro"));
+const prestamista_1 = __importDefault(require("../models/prestamista"));
+const solicitud_1 = __importDefault(require("../models/solicitud"));
+class SolicitudController {
+    save(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const dbResponse = yield banco_1.default.findAll();
+                const dataSave = req.body;
+                const dbResponse = yield solicitud_1.default.create(dataSave);
                 res.json({
                     status: true,
-                    msg: 'Registro de bancos',
+                    msg: 'Registro guardado',
                     data: dbResponse
                 });
             }
             catch (error) {
                 res.json({
                     status: false,
-                    msg: 'ocurrio un error!',
+                    msg: 'ocurrio un error',
+                    dataError: error
+                });
+            }
+        });
+    }
+    getAll(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const dbResponse = yield solicitud_1.default.findAll({
+                    include: [{
+                            model: prestamista_1.default
+                        }, {
+                            model: cuentaAhorro_1.default,
+                        }, {
+                            model: banco_1.default
+                        }
+                    ]
+                });
+                res.json({
+                    status: true,
+                    msg: 'Registro guardado',
+                    data: dbResponse
+                });
+            }
+            catch (error) {
+                res.json({
+                    status: false,
+                    msg: 'ocurrio un error',
                     dataError: error
                 });
             }
         });
     }
 }
-const bancoController = new BancoController();
-exports.default = bancoController;
+const solicitudController = new SolicitudController();
+exports.default = solicitudController;

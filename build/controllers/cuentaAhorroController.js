@@ -72,8 +72,8 @@ class CuentaAhorroController {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const id = req.body.cuenta_ahorro_id;
-                const dbResponse = yield cuentaAhorro_1.default.destroy({ where: { id } });
+                const id = { cuenta_ahorro_id: req.body.cuenta_ahorro_id };
+                const dbResponse = yield cuentaAhorro_1.default.destroy({ where: id });
                 const dataResponse = {
                     status: true,
                     msg: 'Registro eliminado',

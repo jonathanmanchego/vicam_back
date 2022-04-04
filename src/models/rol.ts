@@ -1,17 +1,20 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../database/mysql";
 
-class Banco extends Model{ }
-Banco.init({
-    banco_id: {
+class Rol extends Model{ }
+
+Rol.init({
+    rol_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    banco_name: DataTypes.STRING
+    rol: DataTypes.STRING,
+    rol_descripcion: DataTypes.STRING
 }, {
     sequelize,
-    modelName: 'bancos',
+    modelName: 'roles',
     timestamps: false
 });
-export default Banco;
+
+export default Rol;

@@ -12,19 +12,46 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const banco_1 = __importDefault(require("../models/banco"));
-class BancoController {
-    save(req) {
-        return __awaiter(this, void 0, void 0, function* () {
-        });
-    }
-    getBancos(req, res) {
+const contrato_1 = __importDefault(require("../models/contrato"));
+const estadoContrato_1 = __importDefault(require("../models/estadoContrato"));
+const prestamista_1 = __importDefault(require("../models/prestamista"));
+const solicitud_1 = __importDefault(require("../models/solicitud"));
+class ContratoController {
+    save(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const dbResponse = yield banco_1.default.findAll();
+                const dataSave = req.body;
+                const dbResponse = yield contrato_1.default.create(dataSave);
                 res.json({
                     status: true,
-                    msg: 'Registro de bancos',
+                    msg: 'Registro guardado',
+                    data: dbResponse
+                });
+            }
+            catch (error) {
+                res.json({
+                    status: false,
+                    msg: 'ocurrio un error',
+                    dataError: error
+                });
+            }
+        });
+    }
+    getAll(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const dbResponse = yield contrato_1.default.findAll({
+                    include: [{
+                            model: estadoContrato_1.default
+                        }, {
+                            model: prestamista_1.default
+                        }, {
+                            model: solicitud_1.default
+                        }]
+                });
+                res.json({
+                    status: true,
+                    msg: 'Lista de contratos',
                     data: dbResponse
                 });
             }
@@ -38,5 +65,5 @@ class BancoController {
         });
     }
 }
-const bancoController = new BancoController();
-exports.default = bancoController;
+const contratoController = new ContratoController();
+exports.default = contratoController;

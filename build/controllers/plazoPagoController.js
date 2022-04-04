@@ -12,31 +12,47 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const banco_1 = __importDefault(require("../models/banco"));
-class BancoController {
-    save(req) {
-        return __awaiter(this, void 0, void 0, function* () {
-        });
-    }
-    getBancos(req, res) {
+const plazoPago_1 = __importDefault(require("../models/plazoPago"));
+class PlazoPagoController {
+    save(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const dbResponse = yield banco_1.default.findAll();
+                const dataSave = req.body;
+                const dbResponse = yield plazoPago_1.default.create(dataSave);
                 res.json({
                     status: true,
-                    msg: 'Registro de bancos',
+                    msg: 'Registro guardado',
                     data: dbResponse
                 });
             }
             catch (error) {
                 res.json({
                     status: false,
-                    msg: 'ocurrio un error!',
+                    msg: 'ocurrio un error',
+                    dataError: error
+                });
+            }
+        });
+    }
+    getAll(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const dbResponse = yield plazoPago_1.default.findAll();
+                res.json({
+                    status: true,
+                    msg: 'Resgistros de plazos de pago',
+                    data: dbResponse
+                });
+            }
+            catch (error) {
+                res.json({
+                    status: false,
+                    msg: 'ocurrio un error',
                     dataError: error
                 });
             }
         });
     }
 }
-const bancoController = new BancoController();
-exports.default = bancoController;
+const plazoPagoController = new PlazoPagoController();
+exports.default = plazoPagoController;

@@ -5,18 +5,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const mysql_1 = __importDefault(require("../database/mysql"));
-class Banco extends sequelize_1.Model {
+class Rol extends sequelize_1.Model {
 }
-Banco.init({
-    banco_id: {
+Rol.init({
+    rol_id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    banco_name: sequelize_1.DataTypes.STRING
+    rol: sequelize_1.DataTypes.STRING,
+    rol_descripcion: sequelize_1.DataTypes.STRING
 }, {
     sequelize: mysql_1.default,
-    modelName: 'bancos',
+    modelName: 'roles',
     timestamps: false
 });
-exports.default = Banco;
+exports.default = Rol;

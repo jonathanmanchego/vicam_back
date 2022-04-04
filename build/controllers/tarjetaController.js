@@ -20,9 +20,10 @@ class TarjetaController {
                 const dataSave = {
                     prestamista_id: req.body.prestamista_id,
                     banco_id: req.body.banco_id,
-                    tarjeta_num: req.body.tarjeta_num
+                    tarjeta_num: req.body.tarjeta_num,
+                    cuenta_ahorro: req.body.cuenta_ahorro
                 };
-                const dbResponse = yield tarjeta_1.default.create(dataSave);
+                const dbResponse = yield tarjeta_1.default.create(dataSave, { include: "cuenta_ahorro" });
                 const dataResponse = {
                     stauts: true,
                     msg: 'Registro guardado',
@@ -44,7 +45,7 @@ class TarjetaController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = { tarjeta_id: req.body.tarjeta_id };
-                const dbResponse = yield tarjeta_1.default.destroy({ where: { id } });
+                const dbResponse = yield tarjeta_1.default.destroy({ where: id });
                 const dataResponse = {
                     stauts: true,
                     msg: 'Registro eliminado',

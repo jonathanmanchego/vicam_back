@@ -1,7 +1,7 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../database/mysql';
 
-import Company from './company';
+// import Company from './company';
 
 class Position extends Model{}
 Position.init(
@@ -22,7 +22,7 @@ Position.init(
     }
 );
 
-Company.hasMany(Position,{ foreignKey:'company_id'});
-Position.belongsTo(Company, { foreignKey:'company_id'});
+// Company.hasMany(Position,{ foreignKey:'company_id'});
+// Position.belongsTo(Company, { foreignKey:'company_id'});
 
 export default Position;

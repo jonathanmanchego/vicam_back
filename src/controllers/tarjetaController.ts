@@ -8,9 +8,11 @@ class TarjetaController {
             const dataSave = {
                 prestamista_id: req.body.prestamista_id,
                 banco_id: req.body.banco_id,
-                tarjeta_num: req.body.tarjeta_num
+                tarjeta_num: req.body.tarjeta_num,
+                cuenta_ahorro: 
+                    req.body.cuenta_ahorro
             };
-            const dbResponse = await Tarjeta.create(dataSave);
+            const dbResponse = await Tarjeta.create(dataSave,{include:"cuenta_ahorro"});
             const dataResponse = {
                 stauts: true,
                 msg: 'Registro guardado',
@@ -30,7 +32,7 @@ class TarjetaController {
     public async delete(req: Request, res: Response) {
         try {
             const id = { tarjeta_id: req.body.tarjeta_id };
-            const dbResponse = await Tarjeta.destroy({ where: { id } });
+            const dbResponse = await Tarjeta.destroy({ where:  id  });
             const dataResponse = {
                 stauts: true,
                 msg: 'Registro eliminado',

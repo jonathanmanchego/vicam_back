@@ -1,5 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../database/mysql";
+import CuentaAhorro from "./cuentaAhorro";
 
 class Tarjeta extends Model{ }
 
@@ -17,5 +18,10 @@ Tarjeta.init({
     modelName: 'tarjetas',
     timestamps: false
 });
+
+Tarjeta.hasMany(CuentaAhorro, { as: "cuenta_ahorro", foreignKey: "tarjeta_id" });
+// CuentaAhorro.belongsTo(Tarjeta);
+CuentaAhorro.belongsTo(Tarjeta,{foreignKey:"tarjeta_id"});
+
 
 export default Tarjeta;

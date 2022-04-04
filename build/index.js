@@ -8,17 +8,19 @@ const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const path_1 = __importDefault(require("path"));
 const validarToken_1 = require("./middlewares/validarToken");
-// import documentTypeRoutes from './routes/documentTypeRoutes';
-// import companyRoutes from './routes/companyRoutes';
-// import positionRoutes from './routes/positionRoutes';
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
 const uploadRoutes_1 = __importDefault(require("./routes/uploadRoutes"));
 const prestamistaRoutes_1 = __importDefault(require("./routes/prestamistaRoutes"));
 const tarjetaRoutes_1 = __importDefault(require("./routes/tarjetaRoutes"));
-// import clienteRoutes from './routes/clienteRoutes';
-// import productoRoutes from './routes/productoRoutes';
-// import ventaRoutes from './routes/ventaRoutes';
+const bancoRoutes_1 = __importDefault(require("./routes/bancoRoutes"));
+const solicitudRoutes_1 = __importDefault(require("./routes/solicitudRoutes"));
+const contratoRoutes_1 = __importDefault(require("./routes/contratoRoutes"));
+const pagoRoutes_1 = __importDefault(require("./routes/pagoRoutes"));
+const estadoContratoRoutes_1 = __importDefault(require("./routes/estadoContratoRoutes"));
+const estadoSolicitudRoutes_1 = __importDefault(require("./routes/estadoSolicitudRoutes"));
+const plazoPagoRoutes_1 = __importDefault(require("./routes/plazoPagoRoutes"));
+const cuentaAhorroRoutes_1 = __importDefault(require("./routes/cuentaAhorroRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -38,14 +40,14 @@ class Server {
         this.app.use('/api/auth', authRoutes_1.default);
         this.app.use('/api/prestamistas', prestamistaRoutes_1.default);
         this.app.use('/api/tarjetas', tarjetaRoutes_1.default);
-        ///asdasd
-        // this.app.use('/api/document_types', documentTypeRoutes);
-        // this.app.use('/api/companies', companyRoutes);
-        // this.app.use('/api/positions', positionRoutes);
-        // this.app.use('/api/productos', validarToken, productoRoutes);
-        // this.app.use('/api/clientes', validarToken, clienteRoutes);
-        // this.app.use('/api/ventas', ventaRoutes);
-        // this.app.use('/api/new',  ventaRoutes);
+        this.app.use('/api/bancos', bancoRoutes_1.default);
+        this.app.use('/api/solicitudes', solicitudRoutes_1.default);
+        this.app.use('/api/contratos', contratoRoutes_1.default);
+        this.app.use('/api/pagos', pagoRoutes_1.default);
+        this.app.use('/api/estadosContratos', estadoContratoRoutes_1.default);
+        this.app.use('/api/estadosSolicitudes', estadoSolicitudRoutes_1.default);
+        this.app.use('/api/plazosPagos', plazoPagoRoutes_1.default);
+        this.app.use('/api/cuentasAhorros', cuentaAhorroRoutes_1.default);
         /** RUTA ARCHIVOS */
         this.app.use('/api/upload', validarToken_1.validarToken, uploadRoutes_1.default);
     }

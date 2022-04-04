@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const prestamista_1 = __importDefault(require("../models/prestamista"));
+const user_1 = __importDefault(require("../models/user"));
 class PrestamistaController {
     encryptPasword(password) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -83,37 +84,30 @@ class PrestamistaController {
     save(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const dataSave = {
-                    prestamista_codigo: req.body.prestamista_codigo,
-                    prestamista_nombres: req.body.prestamista_nombres,
-                    prestamista_apellidos: req.body.prestamista_apellidos,
-                    prestamista_dni: req.body.prestamista_dni,
-                    prestamista_celular1: req.body.prestamista_celular1,
-                    prestamista_celular2: req.body.prestamista_celular2,
-                    prestamista_telefono: req.body.prestamista_telefono,
-                    prestamista_correo: req.body.prestamista_correo,
-                    prestamista_password: req.body.prestamista_password,
-                    prestamista_direccion: req.body.prestamista_direccion
-                };
-                dataSave.prestamista_password = yield prestamistaController.encryptPasword(dataSave.prestamista_password);
-                const dbResponse = yield prestamista_1.default.create(dataSave);
-                const rrr = dbResponse.getDataValue("prestamista_id");
+                const dataSave = req.body;
+                // dataSave.user.user_password = await prestamistaController.encryptPasword(dataSave.prestamista_password);
+                // dataSave.prestamista.prestamista_password = await prestamistaController.encryptPasword(dataSave.prestamista_password);
+                // console.log(dataSave    );
+                const dbResponse = yield user_1.default.create(dataSave, { include: "prestamista" });
+                // const rrr = dbResponse.getDataValue("prestamista_id");
                 const dataResponse = {
                     status: true,
                     msg: 'Registro guardado',
-                    data: {
-                        prestamista_id: dbResponse.getDataValue("prestamista_id"),
-                        prestamista_codigo: dbResponse.getDataValue("prestamista_codigo"),
-                        prestamista_nombres: dbResponse.getDataValue("prestamista_nombres"),
-                        prestamista_apellidos: dbResponse.getDataValue("prestamista_apellidos"),
-                        prestamista_dni: dbResponse.getDataValue("prestamista_dni"),
-                        prestamista_celular1: dbResponse.getDataValue("prestamista_celular1"),
-                        prestamista_celular2: dbResponse.getDataValue("prestamista_celular2"),
-                        prestamista_telefono: dbResponse.getDataValue("prestamista_telefono"),
-                        prestamista_correo: dbResponse.getDataValue("prestamista_correo"),
-                        // prestamista_password: dbResponse.getDataValue("prestamista_password"),
-                        prestamista_direccion: dbResponse.getDataValue("prestamista_direccion")
-                    }
+                    data: //{
+                    dbResponse
+                    // prestamista_id: dbResponse.getDataValue("prestamista_id"),
+                    // prestamista_codigo: dbResponse.getDataValue("prestamista_codigo"),
+                    // prestamista_nombres: dbResponse.getDataValue("prestamista_nombres"),
+                    // prestamista_apellidos: dbResponse.getDataValue("prestamista_apellidos"),
+                    // prestamista_dni: dbResponse.getDataValue("prestamista_dni"),
+                    // prestamista_celular1: dbResponse.getDataValue("prestamista_celular1"),
+                    // prestamista_celular2: dbResponse.getDataValue("prestamista_celular2"),
+                    // prestamista_telefono: dbResponse.getDataValue("prestamista_telefono"),
+                    // prestamista_correo: dbResponse.getDataValue("prestamista_correo"),
+                    // // prestamista_password: dbResponse.getDataValue("prestamista_password"),
+                    // prestamista_direccion: dbResponse.getDataValue("prestamista_direccion"), 
+                    // user:
+                    //}
                 };
                 res.json(dataResponse);
             }

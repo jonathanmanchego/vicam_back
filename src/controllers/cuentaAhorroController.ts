@@ -55,8 +55,8 @@ class CuentaAhorroController {
 
     public async delete(req: Request, res: Response) {
         try {
-            const id = req.body.cuenta_ahorro_id;
-            const dbResponse = await CuentaAhorro.destroy({ where: { id } });
+            const id = { cuenta_ahorro_id: req.body.cuenta_ahorro_id };
+            const dbResponse = await CuentaAhorro.destroy({ where:  id  });
             const dataResponse = {
                 status: true,
                 msg: 'Registro eliminado',

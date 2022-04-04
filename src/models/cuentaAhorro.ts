@@ -1,5 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../database/mysql';
+import Tarjeta from './tarjeta';
 
 class CuentaAhorro extends Model { }
 
@@ -18,5 +19,6 @@ CuentaAhorro.init({
     modelName: 'cuentas_ahorros',
     timestamps: false
 });
+
 
 export default CuentaAhorro;

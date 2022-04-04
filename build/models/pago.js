@@ -5,24 +5,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const mysql_1 = __importDefault(require("../database/mysql"));
-const cuentaAhorro_1 = __importDefault(require("./cuentaAhorro"));
-class Tarjeta extends sequelize_1.Model {
+class Pago extends sequelize_1.Model {
 }
-Tarjeta.init({
-    tarjeta_id: {
+Pago.init({
+    pago_id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
+    plazo_pago_id: sequelize_1.DataTypes.INTEGER,
     prestamista_id: sequelize_1.DataTypes.INTEGER,
-    banco_id: sequelize_1.DataTypes.INTEGER,
-    tarjeta_num: sequelize_1.DataTypes.STRING
+    contrato_id: sequelize_1.DataTypes.INTEGER,
+    pago_numero: sequelize_1.DataTypes.STRING,
+    pago_fecha_inicio: sequelize_1.DataTypes.DATE,
+    pago_fecha_fin: sequelize_1.DataTypes.DATE,
+    pago_monto_capital: sequelize_1.DataTypes.DECIMAL,
+    pago_monto_interes: sequelize_1.DataTypes.DECIMAL,
+    pago_tasa_interes: sequelize_1.DataTypes.DECIMAL
 }, {
     sequelize: mysql_1.default,
-    modelName: 'tarjetas',
+    modelName: 'pagos',
     timestamps: false
 });
-Tarjeta.hasMany(cuentaAhorro_1.default, { as: "cuenta_ahorro", foreignKey: "tarjeta_id" });
-// CuentaAhorro.belongsTo(Tarjeta);
-cuentaAhorro_1.default.belongsTo(Tarjeta, { foreignKey: "tarjeta_id" });
-exports.default = Tarjeta;
+exports.default = Pago;

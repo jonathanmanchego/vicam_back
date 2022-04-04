@@ -5,19 +5,19 @@ import path from "path";
 
 import { validarToken } from './middlewares/validarToken';
 
-// import documentTypeRoutes from './routes/documentTypeRoutes';
-// import companyRoutes from './routes/companyRoutes';
-// import positionRoutes from './routes/positionRoutes';
-
 import indexRoutes from './routes/indexRoutes';
 import authRoutes from './routes/authRoutes';
 import uploadRoutes from './routes/uploadRoutes';
 import prestamistaRoutes from './routes/prestamistaRoutes';
 import tarjetaRoutes from './routes/tarjetaRoutes';
-
-// import clienteRoutes from './routes/clienteRoutes';
-// import productoRoutes from './routes/productoRoutes';
-// import ventaRoutes from './routes/ventaRoutes';
+import bancoRoutes from './routes/bancoRoutes';
+import solicitudRoutes from './routes/solicitudRoutes';
+import contratoRoutes from './routes/contratoRoutes';
+import pagoRoutes from './routes/pagoRoutes';
+import estadoContratoRoutes from './routes/estadoContratoRoutes';
+import estadoSolicitudRoutes from './routes/estadoSolicitudRoutes';
+import plazoPagoRoutes from './routes/plazoPagoRoutes';
+import cuentaAhorroRoutes from './routes/cuentaAhorroRoutes';
 
 class Server{
 
@@ -45,15 +45,14 @@ class Server{
 
         this.app.use('/api/prestamistas', prestamistaRoutes);
         this.app.use('/api/tarjetas', tarjetaRoutes);
-        ///asdasd
-        // this.app.use('/api/document_types', documentTypeRoutes);
-        // this.app.use('/api/companies', companyRoutes);
-        // this.app.use('/api/positions', positionRoutes);
-
-        // this.app.use('/api/productos', validarToken, productoRoutes);
-        // this.app.use('/api/clientes', validarToken, clienteRoutes);
-        // this.app.use('/api/ventas', ventaRoutes);
-        // this.app.use('/api/new',  ventaRoutes);
+        this.app.use('/api/bancos', bancoRoutes);
+        this.app.use('/api/solicitudes', solicitudRoutes);
+        this.app.use('/api/contratos', contratoRoutes);
+        this.app.use('/api/pagos', pagoRoutes);
+        this.app.use('/api/estadosContratos', estadoContratoRoutes);
+        this.app.use('/api/estadosSolicitudes', estadoSolicitudRoutes);
+        this.app.use('/api/plazosPagos', plazoPagoRoutes);
+        this.app.use('/api/cuentasAhorros', cuentaAhorroRoutes);
         
         /** RUTA ARCHIVOS */
         this.app.use('/api/upload', validarToken, uploadRoutes);
