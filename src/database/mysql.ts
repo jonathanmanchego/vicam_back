@@ -1,13 +1,14 @@
-import { Sequelize } from 'sequelize';
-
+import { Sequelize } from "sequelize";
+import * as dotenv from "dotenv";
+dotenv.config({ path: __dirname + "/../../.env" });
 const sequelize = new Sequelize(
-    'dbvicam',
-    'root',
-    '',
-    {
-        host: 'localhost',
-        dialect: 'mysql'
-    }
+  process.env.MYSQL_DATABASE || "dbvicam",
+  process.env.MYSQL_USER || "root",
+  process.env.MYSQL_PASSWORD || "",
+  {
+    host: "localhost",
+    dialect: "mysql",
+  }
 );
 
 // sequelize.authenticate().then(() => {
