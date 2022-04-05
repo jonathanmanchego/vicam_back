@@ -10,7 +10,7 @@ class BancoRoutes {
     }
 
     config(): void {
-        this.router.post('/getBancos', bancoController.getBancos);
+        this.router.get('/', bancoController.getBancos);
     }
 }
 

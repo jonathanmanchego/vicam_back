@@ -11,7 +11,7 @@ class BancoRoutes {
         this.config();
     }
     config() {
-        this.router.post('/getBancos', bancoController_1.default.getBancos);
+        this.router.get('/', bancoController_1.default.getBancos);
     }
 }
 const bancoRoutes = new BancoRoutes();
