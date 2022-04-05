@@ -24,7 +24,7 @@ class SolicitudController {
         }
     }
 
-    public async getAll(req:Request,res:Response) {
+    public async getAll(req: Request, res: Response) {
         try {
             const dbResponse = await Solicitud.findAll({
                 include: [{

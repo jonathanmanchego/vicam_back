@@ -18,6 +18,7 @@ import estadoContratoRoutes from './routes/estadoContratoRoutes';
 import estadoSolicitudRoutes from './routes/estadoSolicitudRoutes';
 import plazoPagoRoutes from './routes/plazoPagoRoutes';
 import cuentaAhorroRoutes from './routes/cuentaAhorroRoutes';
+import empleadoRoutes from './routes/empleadoRoutes';
 
 class Server{
 
@@ -53,6 +54,7 @@ class Server{
         this.app.use('/api/estadosSolicitudes', estadoSolicitudRoutes);
         this.app.use('/api/plazosPagos', plazoPagoRoutes);
         this.app.use('/api/cuentasAhorros', cuentaAhorroRoutes);
+        this.app.use('/api/empleados', empleadoRoutes);
         
         /** RUTA ARCHIVOS */
         this.app.use('/api/upload', validarToken, uploadRoutes);

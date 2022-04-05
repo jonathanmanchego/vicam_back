@@ -21,6 +21,7 @@ const estadoContratoRoutes_1 = __importDefault(require("./routes/estadoContratoR
 const estadoSolicitudRoutes_1 = __importDefault(require("./routes/estadoSolicitudRoutes"));
 const plazoPagoRoutes_1 = __importDefault(require("./routes/plazoPagoRoutes"));
 const cuentaAhorroRoutes_1 = __importDefault(require("./routes/cuentaAhorroRoutes"));
+const empleadoRoutes_1 = __importDefault(require("./routes/empleadoRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -48,6 +49,7 @@ class Server {
         this.app.use('/api/estadosSolicitudes', estadoSolicitudRoutes_1.default);
         this.app.use('/api/plazosPagos', plazoPagoRoutes_1.default);
         this.app.use('/api/cuentasAhorros', cuentaAhorroRoutes_1.default);
+        this.app.use('/api/empleados', empleadoRoutes_1.default);
         /** RUTA ARCHIVOS */
         this.app.use('/api/upload', validarToken_1.validarToken, uploadRoutes_1.default);
     }
