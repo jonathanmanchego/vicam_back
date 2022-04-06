@@ -27,7 +27,7 @@ const sequelize_1 = require("sequelize");
 const dotenv = __importStar(require("dotenv"));
 dotenv.config({ path: __dirname + "/../../.env" });
 const sequelize = new sequelize_1.Sequelize(process.env.MYSQL_DATABASE || "dbvicam", process.env.MYSQL_USER || "root", process.env.MYSQL_PASSWORD || "", {
-    host: "localhost",
+    host: process.env.MYSQL_HOST,
     dialect: "mysql",
 });
 // sequelize.authenticate().then(() => {
