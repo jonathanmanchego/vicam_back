@@ -4,7 +4,7 @@ import sequelize from '../database/mysql';
 class Prestamista extends Model { }
 
 Prestamista.init({
-    prestamista_id: {
+    id: {
         type:DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement:true

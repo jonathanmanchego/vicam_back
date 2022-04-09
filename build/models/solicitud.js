@@ -12,7 +12,7 @@ const banco_1 = __importDefault(require("./banco"));
 class Solicitud extends sequelize_1.Model {
 }
 Solicitud.init({
-    solicitud_id: {
+    id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true

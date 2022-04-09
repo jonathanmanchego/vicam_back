@@ -9,7 +9,7 @@ const cuentaAhorro_1 = __importDefault(require("./cuentaAhorro"));
 class Tarjeta extends sequelize_1.Model {
 }
 Tarjeta.init({
-    tarjeta_id: {
+    id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true

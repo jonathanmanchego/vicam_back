@@ -9,7 +9,7 @@ const mysql_1 = __importDefault(require("../database/mysql"));
 class Position extends sequelize_1.Model {
 }
 Position.init({
-    position_id: {
+    id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true

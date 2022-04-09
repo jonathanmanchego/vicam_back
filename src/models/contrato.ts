@@ -7,7 +7,7 @@ import Solicitud from './solicitud';
 class Contrato extends Model { }
 
 Contrato.init({
-    contrato_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true

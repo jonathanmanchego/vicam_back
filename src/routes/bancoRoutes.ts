@@ -11,6 +11,9 @@ class BancoRoutes {
 
     config(): void {
         this.router.get('/', bancoController.getBancos);
+        this.router.post('/', bancoController.getBancos);
+        this.router.put('/', bancoController.getBancos);
+        this.router.delete('/', bancoController.getBancos);
     }
 }
 

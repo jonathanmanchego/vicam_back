@@ -11,7 +11,7 @@ const solicitud_1 = __importDefault(require("./solicitud"));
 class Contrato extends sequelize_1.Model {
 }
 Contrato.init({
-    contrato_id: {
+    id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true

@@ -4,7 +4,7 @@ import sequelize from '../database/mysql';
 class EstadoSolicitud extends Model { }
 
 EstadoSolicitud.init({
-    estado_solicitud_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true

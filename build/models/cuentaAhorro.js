@@ -8,7 +8,7 @@ const mysql_1 = __importDefault(require("../database/mysql"));
 class CuentaAhorro extends sequelize_1.Model {
 }
 CuentaAhorro.init({
-    cuenta_ahorro_id: {
+    id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true

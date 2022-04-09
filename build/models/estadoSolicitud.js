@@ -8,7 +8,7 @@ const mysql_1 = __importDefault(require("../database/mysql"));
 class EstadoSolicitud extends sequelize_1.Model {
 }
 EstadoSolicitud.init({
-    estado_solicitud_id: {
+    id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true

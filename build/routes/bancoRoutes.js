@@ -12,6 +12,9 @@ class BancoRoutes {
     }
     config() {
         this.router.get('/', bancoController_1.default.getBancos);
+        this.router.post('/', bancoController_1.default.getBancos);
+        this.router.put('/', bancoController_1.default.getBancos);
+        this.router.delete('/', bancoController_1.default.getBancos);
     }
 }
 const bancoRoutes = new BancoRoutes();

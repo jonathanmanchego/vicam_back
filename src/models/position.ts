@@ -6,7 +6,7 @@ import sequelize from '../database/mysql';
 class Position extends Model{}
 Position.init(
     {
-        position_id: {
+        id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true

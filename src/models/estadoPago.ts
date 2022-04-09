@@ -4,7 +4,7 @@ import sequelize from "../database/mysql";
 class EstadoPago extends Model{ }
 
 EstadoPago.init({
-    ep_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true

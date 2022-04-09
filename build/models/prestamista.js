@@ -8,7 +8,7 @@ const mysql_1 = __importDefault(require("../database/mysql"));
 class Prestamista extends sequelize_1.Model {
 }
 Prestamista.init({
-    prestamista_id: {
+    id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true

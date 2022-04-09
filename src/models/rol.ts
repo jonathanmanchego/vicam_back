@@ -4,7 +4,7 @@ import sequelize from "../database/mysql";
 class Rol extends Model{ }
 
 Rol.init({
-    rol_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true

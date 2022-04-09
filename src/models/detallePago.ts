@@ -4,7 +4,7 @@ import sequelize from "../database/mysql";
 class DetallePago extends Model{ }
 
 DetallePago.init({
-    dp_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true

@@ -5,7 +5,7 @@ import Tarjeta from './tarjeta';
 class CuentaAhorro extends Model { }
 
 CuentaAhorro.init({
-    cuenta_ahorro_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true

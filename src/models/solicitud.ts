@@ -11,7 +11,7 @@ import Empleado from './empleado';
 class Solicitud extends Model { }
 
 Solicitud.init({
-    solicitud_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true

@@ -10,7 +10,7 @@ const empleado_1 = __importDefault(require("./empleado"));
 class User extends sequelize_1.Model {
 }
 User.init({
-    user_id: {
+    id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true

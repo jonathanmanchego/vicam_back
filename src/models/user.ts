@@ -6,7 +6,7 @@ import Empleado from "./empleado";
 class User extends Model{ }
 
 User.init({
-    user_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
