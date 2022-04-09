@@ -2,7 +2,7 @@
 
 guardar prestamista: localhost:3000/api/prestamistas/save
 {
-    "user_nick": "76651725  ",
+    "user_nick": "76651725",
     "user_password":"kkasmdkmas",
     "prestamista":{
         "prestamista_codigo": "dni",
