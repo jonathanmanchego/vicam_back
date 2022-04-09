@@ -55,8 +55,3 @@ guardar contrato: localhost:3000/api/contratos/save
     "contrato_url_file": "OSADOAJSF"
 }
 
-localhost:3000/api/contratos/getAll
-localhost:3000/api/solicitudes/getAll
-localhost:3000/api/contratos/getAll
-
-

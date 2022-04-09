@@ -1,7 +1,11 @@
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
 }) : (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     o[k2] = m[k];
@@ -23,7 +27,7 @@ const sequelize_1 = require("sequelize");
 const dotenv = __importStar(require("dotenv"));
 dotenv.config({ path: __dirname + "/../../.env" });
 const sequelize = new sequelize_1.Sequelize(process.env.MYSQL_DATABASE || "dbvicam", process.env.MYSQL_USER || "root", process.env.MYSQL_PASSWORD || "", {
-    host: "localhost",
+    host: process.env.MYSQL_HOST,
     dialect: "mysql",
 });
 // sequelize.authenticate().then(() => {

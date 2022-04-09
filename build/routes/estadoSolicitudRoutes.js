@@ -13,6 +13,7 @@ class EstadoSolicitudRoutes {
     config() {
         this.router.post('/save', estadoSolicitudController_1.default.save);
         this.router.post('/getAll', estadoSolicitudController_1.default.getAll);
+        this.router.post('/getAll', estadoSolicitudController_1.default.getAll);
     }
 }
 const estadoSolicitudRoutes = new EstadoSolicitudRoutes();
