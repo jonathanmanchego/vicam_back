@@ -11,7 +11,7 @@ class PlazoPagoRoutes {
 
     config(): void {
         this.router.post('/save', plazoPagoController.save);
-        this.router.post('/getAll', plazoPagoController.getAll);
+        this.router.get('/', plazoPagoController.getAll);
     }
 }
 
