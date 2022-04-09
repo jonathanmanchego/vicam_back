@@ -14,11 +14,67 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const banco_1 = __importDefault(require("../models/banco"));
 class BancoController {
-    save(req) {
+    save(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const saveData = req.body;
+                const dbResponse = yield banco_1.default.create(saveData);
+                res.json({
+                    status: true,
+                    msg: 'Registro guardado',
+                    data: dbResponse
+                });
+            }
+            catch (error) {
+                res.json({
+                    status: false,
+                    msg: 'ocurrio un error!',
+                    dataError: error
+                });
+            }
         });
     }
-    getBancos(req, res) {
+    getAll(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const dbResponse = yield banco_1.default.findAll();
+                res.json({
+                    status: true,
+                    msg: 'Registro de bancos',
+                    data: dbResponse
+                });
+            }
+            catch (error) {
+                res.json({
+                    status: false,
+                    msg: 'ocurrio un error!',
+                    dataError: error
+                });
+            }
+        });
+    }
+    getOne(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const dataUpdate = req.body.banco_name;
+                const id = req.params.id;
+                const dbResponse = yield banco_1.default.findByPk(id);
+                res.json({
+                    status: true,
+                    msg: 'Registro de bancos',
+                    data: dbResponse
+                });
+            }
+            catch (error) {
+                res.json({
+                    status: false,
+                    msg: 'ocurrio un error!',
+                    dataError: error
+                });
+            }
+        });
+    }
+    update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const dbResponse = yield banco_1.default.findAll();

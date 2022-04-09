@@ -11,10 +11,11 @@ class BancoRoutes {
         this.config();
     }
     config() {
-        this.router.get('/', bancoController_1.default.getBancos);
-        this.router.post('/', bancoController_1.default.getBancos);
-        this.router.put('/', bancoController_1.default.getBancos);
-        this.router.delete('/', bancoController_1.default.getBancos);
+        this.router.get('/', bancoController_1.default.getAll);
+        this.router.get('/:id', bancoController_1.default.getOne);
+        this.router.post('/', bancoController_1.default.save);
+        this.router.put('/', bancoController_1.default.getAll);
+        this.router.delete('/:id', bancoController_1.default.getAll);
     }
 }
 const bancoRoutes = new BancoRoutes();
