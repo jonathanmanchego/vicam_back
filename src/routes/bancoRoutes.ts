@@ -13,8 +13,8 @@ class BancoRoutes {
         this.router.get('/', bancoController.getAll);
         this.router.get('/:id', bancoController.getOne);
         this.router.post('/', bancoController.save);
-        this.router.put('/', bancoController.getAll);
-        this.router.delete('/:id', bancoController.getAll);
+        this.router.put('/:id', bancoController.update);
+        this.router.delete('/:id', bancoController.delete);
     }
 }
 

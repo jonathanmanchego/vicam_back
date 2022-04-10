@@ -11,8 +11,9 @@ class ContratoRoutes {
         this.config();
     }
     config() {
-        this.router.post('/save', contratoController_1.default.save);
-        this.router.post('/getAll', contratoController_1.default.getAll);
+        this.router.post('/', contratoController_1.default.save);
+        this.router.get('/', contratoController_1.default.getAll);
+        this.router.get('/PDF', contratoController_1.default.contratoPDF);
     }
 }
 const contratoRoutes = new ContratoRoutes();

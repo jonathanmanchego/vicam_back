@@ -14,8 +14,8 @@ class BancoRoutes {
         this.router.get('/', bancoController_1.default.getAll);
         this.router.get('/:id', bancoController_1.default.getOne);
         this.router.post('/', bancoController_1.default.save);
-        this.router.put('/', bancoController_1.default.getAll);
-        this.router.delete('/:id', bancoController_1.default.getAll);
+        this.router.put('/:id', bancoController_1.default.update);
+        this.router.delete('/:id', bancoController_1.default.delete);
     }
 }
 const bancoRoutes = new BancoRoutes();

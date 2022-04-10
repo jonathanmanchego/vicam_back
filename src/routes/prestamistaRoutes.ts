@@ -10,11 +10,11 @@ class PrestamistaRoutes {
     }
 
     config(): void {
-        this.router.post('/save', prestamistaController.save);
-        this.router.post('/update', prestamistaController.update);
-        this.router.post('/destroy', prestamistaController.delete);
-        this.router.post('/getOne', prestamistaController.getOne);
-        this.router.post('/getAll', prestamistaController.getAll);
+        this.router.get('/', prestamistaController.getAll);
+        this.router.post('/', prestamistaController.save);
+        this.router.put('/:id', prestamistaController.update);
+        this.router.delete('/:id', prestamistaController.delete);
+        this.router.get('/:id', prestamistaController.getOne);
     }
 }
 

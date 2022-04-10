@@ -11,8 +11,8 @@ class SolicitudRoutes {
         this.config();
     }
     config() {
-        this.router.post('/save', solicitudController_1.default.save);
-        this.router.post('/getAll', solicitudController_1.default.getAll);
+        this.router.post('/', solicitudController_1.default.save);
+        this.router.get('/', solicitudController_1.default.getAll);
     }
 }
 const solicitudRoutes = new SolicitudRoutes();

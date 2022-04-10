@@ -10,8 +10,9 @@ class ContratoRoutes {
     }
 
     config(): void {
-        this.router.post('/save',contratoController.save);
-        this.router.post('/getAll',contratoController.getAll);
+        this.router.post('/',contratoController.save);
+        this.router.get('/',contratoController.getAll);
+        this.router.get('/PDF',contratoController.contratoPDF);
     }
 }
 

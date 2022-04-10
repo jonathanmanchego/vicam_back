@@ -31,11 +31,11 @@ class PrestamistaController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 // const prestamista_id = { prestamista_id: req.body.prestamista_id };
-                const prestamista_id = req.body.prestamista_id;
-                const dbResponse = prestamista_1.default.findByPk(prestamista_id);
+                const id = req.params.id;
+                const dbResponse = yield prestamista_1.default.findByPk(id);
                 const dataResponse = {
                     status: true,
-                    msg: 'Datos del prestamista',
+                    msg: 'Datos del prestamista' + id,
                     data: dbResponse
                 };
                 res.json(dataResponse);
@@ -58,7 +58,7 @@ class PrestamistaController {
     getAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const dbResponse = prestamista_1.default.findAll();
+                const dbResponse = yield prestamista_1.default.findAll();
                 const dataResponse = {
                     status: true,
                     msg: 'Lista de prestamistas!',

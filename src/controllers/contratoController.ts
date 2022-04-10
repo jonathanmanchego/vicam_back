@@ -3,6 +3,7 @@ import Contrato from "../models/contrato";
 import EstadoContrato from "../models/estadoContrato";
 import Prestamista from "../models/prestamista";
 import Solicitud from "../models/solicitud";
+var pdf = require('html-pdf');
 
 class ContratoController {
     public async save(req: Request, res: Response) {
@@ -49,6 +50,26 @@ class ContratoController {
             });
         }        
     }
+
+    public async contratoPDF() {
+        try {
+            const htmlPDF = `
+                <h1>Título en el PDF creado con el paquete html-pdf</h1>
+                <p>Generando un PDF con un HTML sencillo</p>
+            `;
+            pdf.create(htmlPDF).toFile('./html-pdf.pdf', function(err:any, res:any) {
+                if (err){
+                    console.log(err);
+                } else {
+                    console.log(res);
+                }
+            });
+
+        } catch (error) {
+            
+        }
+    }
+
 }
 
 const contratoController = new ContratoController();

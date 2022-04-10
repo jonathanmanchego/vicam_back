@@ -10,7 +10,7 @@ class PagoRoutes {
     }
 
     config(): void {
-        this.router.post('/save',pagoController.save);
+        this.router.post('/',pagoController.save);
     }
 }
 

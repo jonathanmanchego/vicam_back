@@ -11,7 +11,7 @@ class TarjetaRoutes {
         this.config();
     }
     config() {
-        this.router.post('/save', tarjetaController_1.default.save);
+        this.router.post('/', tarjetaController_1.default.save);
     }
 }
 const tarjetaRoutes = new TarjetaRoutes();

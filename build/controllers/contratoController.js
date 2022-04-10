@@ -16,6 +16,7 @@ const contrato_1 = __importDefault(require("../models/contrato"));
 const estadoContrato_1 = __importDefault(require("../models/estadoContrato"));
 const prestamista_1 = __importDefault(require("../models/prestamista"));
 const solicitud_1 = __importDefault(require("../models/solicitud"));
+var pdf = require('html-pdf');
 class ContratoController {
     save(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -61,6 +62,26 @@ class ContratoController {
                     msg: 'ocurrio un error!',
                     dataError: error
                 });
+            }
+        });
+    }
+    contratoPDF() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const htmlPDF = `
+                <h1>Título en el PDF creado con el paquete html-pdf</h1>
+                <p>Generando un PDF con un HTML sencillo</p>
+            `;
+                pdf.create(htmlPDF).toFile('./html-pdf.pdf', function (err, res) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        console.log(res);
+                    }
+                });
+            }
+            catch (error) {
             }
         });
     }

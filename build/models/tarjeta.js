@@ -16,6 +16,7 @@ Tarjeta.init({
     },
     prestamista_id: sequelize_1.DataTypes.INTEGER,
     banco_id: sequelize_1.DataTypes.INTEGER,
+    tipo_tarjeta_id: sequelize_1.DataTypes.INTEGER,
     tarjeta_num: sequelize_1.DataTypes.STRING
 }, {
     sequelize: mysql_1.default,
@@ -23,6 +24,6 @@ Tarjeta.init({
     timestamps: false
 });
 Tarjeta.hasMany(cuentaAhorro_1.default, { as: "cuenta_ahorro", foreignKey: "tarjeta_id" });
-// CuentaAhorro.belongsTo(Tarjeta);
+// CuentaAhorro.belongsTo(Tarjeta);asd
 cuentaAhorro_1.default.belongsTo(Tarjeta, { foreignKey: "tarjeta_id" });
 exports.default = Tarjeta;

@@ -9,6 +9,7 @@ class TarjetaController {
                 prestamista_id: req.body.prestamista_id,
                 banco_id: req.body.banco_id,
                 tarjeta_num: req.body.tarjeta_num,
+                tipo_tarjeta_id: req.body.tipo_tarjeta_id,
                 cuenta_ahorro: 
                     req.body.cuenta_ahorro
             };

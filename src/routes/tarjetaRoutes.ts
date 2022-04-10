@@ -10,7 +10,7 @@ class TarjetaRoutes {
     }
 
     config(): void {
-        this.router.post('/save',tarjetaController.save);
+        this.router.post('/',tarjetaController.save);
     }
 }
 

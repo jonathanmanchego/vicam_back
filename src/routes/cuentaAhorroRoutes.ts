@@ -10,9 +10,9 @@ class CuentaAhorroRoutes {
     }
 
     config(): void {
-        this.router.post('/save', cuentaAhorroController.save);
-        this.router.post('/delete', cuentaAhorroController.delete);
-        this.router.post('/getAll', cuentaAhorroController.getAll);
+        this.router.post('/', cuentaAhorroController.save);
+        this.router.delete('/', cuentaAhorroController.delete);
+        this.router.get('/', cuentaAhorroController.getAll);
     }
 }
 

@@ -11,8 +11,8 @@ class EstadoContratoRoutes {
         this.config();
     }
     config() {
-        this.router.post('/save', estadoContratoController_1.default.save);
-        this.router.post('/getAll', estadoContratoController_1.default.getAll);
+        this.router.post('/', estadoContratoController_1.default.save);
+        this.router.get('/', estadoContratoController_1.default.getAll);
     }
 }
 const estadoContratoRoutes = new EstadoContratoRoutes();

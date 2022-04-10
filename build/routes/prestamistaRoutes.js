@@ -11,11 +11,11 @@ class PrestamistaRoutes {
         this.config();
     }
     config() {
-        this.router.post('/save', prestamistaController_1.default.save);
-        this.router.post('/update', prestamistaController_1.default.update);
-        this.router.post('/destroy', prestamistaController_1.default.delete);
-        this.router.post('/getOne', prestamistaController_1.default.getOne);
-        this.router.post('/getAll', prestamistaController_1.default.getAll);
+        this.router.get('/', prestamistaController_1.default.getAll);
+        this.router.post('/', prestamistaController_1.default.save);
+        this.router.put('/:id', prestamistaController_1.default.update);
+        this.router.delete('/:id', prestamistaController_1.default.delete);
+        this.router.get('/:id', prestamistaController_1.default.getOne);
     }
 }
 const prestamistaRoutes = new PrestamistaRoutes();

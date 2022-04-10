@@ -10,8 +10,8 @@ class EstadoContratoRoutes {
     }
 
     config(): void {
-        this.router.post('/save', estadoContratoController.save);
-        this.router.post('/getAll', estadoContratoController.getAll);
+        this.router.post('/', estadoContratoController.save);
+        this.router.get('/', estadoContratoController.getAll);
     }
 }
 

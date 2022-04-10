@@ -12,6 +12,7 @@ Tarjeta.init({
     },
     prestamista_id: DataTypes.INTEGER,
     banco_id: DataTypes.INTEGER,
+    tipo_tarjeta_id: DataTypes.INTEGER,
     tarjeta_num: DataTypes.STRING
 }, {
     sequelize,
@@ -20,7 +21,7 @@ Tarjeta.init({
 });
 
 Tarjeta.hasMany(CuentaAhorro, { as: "cuenta_ahorro", foreignKey: "tarjeta_id" });
-// CuentaAhorro.belongsTo(Tarjeta);
+// CuentaAhorro.belongsTo(Tarjeta);asd
 CuentaAhorro.belongsTo(Tarjeta,{foreignKey:"tarjeta_id"});
 
 

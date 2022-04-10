@@ -10,8 +10,8 @@ class SolicitudRoutes {
     }
 
     config(): void {
-        this.router.post('/save',solicitudController.save);
-        this.router.post('/getAll',solicitudController.getAll);
+        this.router.post('/',solicitudController.save);
+        this.router.get('/',solicitudController.getAll);
     }
 }
 

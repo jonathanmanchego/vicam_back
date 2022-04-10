@@ -10,9 +10,8 @@ class EstadoSolicitudRoutes {
     }
 
     config(): void {
-        this.router.post('/save', estadoSolicitudController.save);
-        this.router.post('/getAll', estadoSolicitudController.getAll);
-        this.router.post('/getAll', estadoSolicitudController.getAll);
+        this.router.post('/', estadoSolicitudController.save);
+        this.router.get('/', estadoSolicitudController.getAll);
     }
 }
 

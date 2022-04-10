@@ -10,7 +10,7 @@ class EmpleadoRoutes {
     }
 
     config(): void {
-        this.router.post('/save',empleadoController.save);
+        this.router.post('/',empleadoController.save);
     }
 }
 

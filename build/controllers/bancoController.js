@@ -56,7 +56,6 @@ class BancoController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const dataUpdate = req.body.banco_name;
                 const id = req.params.id;
                 const dbResponse = yield banco_1.default.findByPk(id);
                 res.json({
@@ -77,10 +76,32 @@ class BancoController {
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const dbResponse = yield banco_1.default.findAll();
+                const id = { id: req.params.id };
+                const dataUpdate = req.body;
+                const dbResponse = yield banco_1.default.update(dataUpdate, { where: id });
                 res.json({
                     status: true,
-                    msg: 'Registro de bancos',
+                    msg: 'Registro actualizado',
+                    data: dbResponse
+                });
+            }
+            catch (error) {
+                res.json({
+                    status: false,
+                    msg: 'ocurrio un error!',
+                    dataError: error
+                });
+            }
+        });
+    }
+    delete(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const id = { id: req.params.id };
+                const dbResponse = yield banco_1.default.destroy({ where: id });
+                res.json({
+                    status: true,
+                    msg: 'Registro elimiando',
                     data: dbResponse
                 });
             }

@@ -11,7 +11,7 @@ class PagoRoutes {
         this.config();
     }
     config() {
-        this.router.post('/save', pagoController_1.default.save);
+        this.router.post('/', pagoController_1.default.save);
     }
 }
 const pagoRoutes = new PagoRoutes();

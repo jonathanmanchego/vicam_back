@@ -53,7 +53,7 @@ class SolicitudController {
 
     // public async getOne(req: Request, res: Response) {
     //     try {
-    //         const dbResponse = ;
+    //         const dbResponse = await ;
     //         res.json({
     //             status: true,
     //             msg: 'Registro guardado',

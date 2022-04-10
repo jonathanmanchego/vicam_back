@@ -17,11 +17,11 @@ class PrestamistaController {
     public async getOne(req: Request, res: Response) {
         try {
             // const prestamista_id = { prestamista_id: req.body.prestamista_id };
-            const prestamista_id = req.body.prestamista_id;
-            const dbResponse = Prestamista.findByPk(prestamista_id);
+            const id = req.params.id;
+            const dbResponse = await Prestamista.findByPk(id);
             const dataResponse = {
                 status: true,
-                msg: 'Datos del prestamista',
+                msg: 'Datos del prestamista'+id,
                 data: dbResponse
             };
             res.json(dataResponse);
@@ -41,7 +41,7 @@ class PrestamistaController {
      */
     public async getAll(req: Request, res: Response) {
         try {
-            const dbResponse = Prestamista.findAll();
+            const dbResponse = await Prestamista.findAll();
             const dataResponse = {
                 status: true,
                 msg: 'Lista de prestamistas!',
