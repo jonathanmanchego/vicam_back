@@ -37,6 +37,24 @@ class EstadoContratoController {
             });
         }
     }
+    
+    public async getOne(req: Request, res: Response) {
+        try {
+            const id = req.params.id;
+            const dbResponse = await EstadoContrato.findByPk(id);
+            res.json({
+                status: true,
+                msg: 'estado',
+                data:dbResponse
+            });
+        } catch (error) {
+            res.json({
+                status: false,
+                msg: 'ocurrio un error',
+                dataError:error
+            });
+        }
+    }
 
 }
 

@@ -12,6 +12,7 @@ class EstadoContratoRoutes {
     config(): void {
         this.router.post('/', estadoContratoController.save);
         this.router.get('/', estadoContratoController.getAll);
+        this.router.get('/:id', estadoContratoController.getOne);
     }
 }
 

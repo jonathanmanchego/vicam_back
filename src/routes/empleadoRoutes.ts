@@ -11,6 +11,8 @@ class EmpleadoRoutes {
 
     config(): void {
         this.router.post('/',empleadoController.save);
+        this.router.get('/',empleadoController.getAll);
+        this.router.get('/:id',empleadoController.getOne);
     }
 }
 

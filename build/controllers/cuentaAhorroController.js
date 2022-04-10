@@ -44,7 +44,7 @@ class CuentaAhorroController {
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const id = { cuenta_ahorro_id: req.body.cuenta_ahorro_id };
+                const id = { cuenta_ahorro_id: req.params.id };
                 const dataUpdate = {
                     tarjeta_id: req.body.tarjeta_id,
                     prestamista_id: req.body.prestamista_id,
@@ -72,7 +72,7 @@ class CuentaAhorroController {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const id = { cuenta_ahorro_id: req.body.cuenta_ahorro_id };
+                const id = { cuenta_ahorro_id: req.params.id };
                 const dbResponse = yield cuentaAhorro_1.default.destroy({ where: id });
                 const dataResponse = {
                     status: true,
@@ -94,7 +94,7 @@ class CuentaAhorroController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const dbResponse = yield cuentaAhorro_1.default.findByPk(req.body.cuenta_ahorro_id);
+                const dbResponse = yield cuentaAhorro_1.default.findByPk(req.params.id);
                 const dataResponse = {
                     status: true,
                     msg: 'Datos de cuenta',

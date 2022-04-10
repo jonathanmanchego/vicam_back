@@ -12,7 +12,7 @@ class ContratoRoutes {
     config(): void {
         this.router.post('/',contratoController.save);
         this.router.get('/',contratoController.getAll);
-        this.router.get('/PDF',contratoController.contratoPDF);
+        this.router.get('/PDF/:id',contratoController.contratoPDF);
     }
 }
 

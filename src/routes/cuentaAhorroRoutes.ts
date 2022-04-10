@@ -11,8 +11,9 @@ class CuentaAhorroRoutes {
 
     config(): void {
         this.router.post('/', cuentaAhorroController.save);
-        this.router.delete('/', cuentaAhorroController.delete);
         this.router.get('/', cuentaAhorroController.getAll);
+        this.router.get('/:id', cuentaAhorroController.getOne);
+        this.router.delete('/:id', cuentaAhorroController.delete);
     }
 }
 

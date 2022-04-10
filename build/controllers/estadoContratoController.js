@@ -53,6 +53,26 @@ class EstadoContratoController {
             }
         });
     }
+    getOne(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const id = req.params.id;
+                const dbResponse = yield estadoContrato_1.default.findByPk(id);
+                res.json({
+                    status: true,
+                    msg: 'estado',
+                    data: dbResponse
+                });
+            }
+            catch (error) {
+                res.json({
+                    status: false,
+                    msg: 'ocurrio un error',
+                    dataError: error
+                });
+            }
+        });
+    }
 }
 const estadoContratoController = new EstadoContratoController();
 exports.default = estadoContratoController;

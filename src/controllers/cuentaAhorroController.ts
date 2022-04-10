@@ -29,7 +29,7 @@ class CuentaAhorroController {
 
     public async update(req: Request, res: Response) {
         try {
-            const id = { cuenta_ahorro_id: req.body.cuenta_ahorro_id };
+            const id = { cuenta_ahorro_id: req.params.id };
             const dataUpdate = {
                 tarjeta_id: req.body.tarjeta_id,
                 prestamista_id: req.body.prestamista_id,
@@ -55,7 +55,7 @@ class CuentaAhorroController {
 
     public async delete(req: Request, res: Response) {
         try {
-            const id = { cuenta_ahorro_id: req.body.cuenta_ahorro_id };
+            const id = { cuenta_ahorro_id: req.params.id };
             const dbResponse = await CuentaAhorro.destroy({ where:  id  });
             const dataResponse = {
                 status: true,
@@ -75,7 +75,7 @@ class CuentaAhorroController {
     
     public async getOne(req: Request, res: Response) {
         try {
-            const dbResponse = await CuentaAhorro.findByPk(req.body.cuenta_ahorro_id);
+            const dbResponse = await CuentaAhorro.findByPk(req.params.id);
             const dataResponse = {
                 status: true,
                 msg: 'Datos de cuenta',

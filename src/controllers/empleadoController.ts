@@ -29,7 +29,25 @@ class EmpleadoController {
             const dbResponse = await Empleado.findAll();
             res.json({
                 status: true,
-                msg: 'Registro de bancos',
+                msg: 'Registro de empleados',
+                data: dbResponse
+            });
+        } catch (error) {
+            res.json({
+                status: false,
+                msg: 'Ocurrio un error!',
+                dataError:error
+            });
+        }        
+    }
+
+    public async getOne(req: Request, res: Response) {
+        try {
+            const id = req.params.id;
+            const dbResponse = await Empleado.findByPk(id);
+            res.json({
+                status: true,
+                msg: 'datos del empleado',
                 data: dbResponse
             });
         } catch (error) {
