@@ -24,15 +24,15 @@ class SolicitudController {
                 const dbResponse = yield solicitud_1.default.create(dataSave);
                 res.json({
                     status: true,
-                    msg: 'Registro guardado',
-                    data: dbResponse
+                    msg: "Registro guardado",
+                    data: dbResponse,
                 });
             }
             catch (error) {
-                res.json({
+                res.status(402).json({
                     status: false,
-                    msg: 'ocurrio un error',
-                    dataError: error
+                    msg: "ocurrio un error",
+                    dataError: error,
                 });
             }
         });
@@ -41,26 +41,29 @@ class SolicitudController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const dbResponse = yield solicitud_1.default.findAll({
-                    include: [{
-                            model: prestamista_1.default
-                        }, {
+                    include: [
+                        {
+                            model: prestamista_1.default,
+                        },
+                        {
                             model: cuentaAhorro_1.default,
-                        }, {
-                            model: banco_1.default
-                        }
-                    ]
+                        },
+                        {
+                            model: banco_1.default,
+                        },
+                    ],
                 });
                 res.json({
                     status: true,
-                    msg: 'Registro guardado',
-                    data: dbResponse
+                    msg: "Registro guardado",
+                    data: dbResponse,
                 });
             }
             catch (error) {
                 res.json({
                     status: false,
-                    msg: 'ocurrio un error',
-                    dataError: error
+                    msg: "ocurrio un error",
+                    dataError: error,
                 });
             }
         });
