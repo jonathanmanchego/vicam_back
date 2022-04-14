@@ -1,10 +1,14 @@
 # vicam_back
 
-guardar prestamista: localhost:3000/api/prestamistas/save
+guardar prestamista: localhost:3000/api/prestamistas/ (POST)
 {
 "user_nick": "76651725 ",
 "user_password":"kkasmdkmas",
 "prestamista":{
+"localia_id": 1,
+"provincia_id": 1,
+"departamento_id": 5,
+"pais_id": 1,
 "prestamista_codigo": "dni",
 "prestamista_nombres": "mois",
 "prestamista_apellidos": "Fer",
@@ -18,7 +22,7 @@ guardar prestamista: localhost:3000/api/prestamistas/save
 }
 }
 
-guardar tarjeta y cuenta ahorro: localhost:3000/api/tarjetas/save
+guardar tarjeta y cuenta ahorro: localhost:3000/api/tarjetas/
 {
 "prestamista_id": 1,
 "banco_id": 2,
@@ -30,7 +34,7 @@ guardar tarjeta y cuenta ahorro: localhost:3000/api/tarjetas/save
 }
 }
 
-guardar solicitud: localhost:3000/api/solicitudes/save
+guardar solicitud: localhost:3000/api/solicitudes/
 {
 "estado_solicitud_id": 1,
 "cuenta_ahorro_id": 1,
@@ -46,7 +50,7 @@ guardar solicitud: localhost:3000/api/solicitudes/save
 "solicitud_monto": 300
 }
 
-guardar contrato: localhost:3000/api/contratos/save
+guardar contrato: localhost:3000/api/contratos/
 {
 "prestamista_id": 1,
 "estado_contrato_id": 1,

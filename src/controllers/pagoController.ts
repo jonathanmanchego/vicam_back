@@ -21,6 +21,14 @@ class PagoController {
         }
     }
 
+    public async getAll() {
+        try {
+            
+        } catch (error) {
+            
+        }
+    }
+
 }
 
 const pagoController = new PagoController();

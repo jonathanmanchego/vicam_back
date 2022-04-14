@@ -16,7 +16,15 @@ Contrato.init({
     estado_contrato_id: DataTypes.INTEGER,
     solicitud_id: DataTypes.INTEGER,
     contrato_fecha: DataTypes.DATE,
-    contrato_url_file: DataTypes.STRING
+    contrato_url_file: DataTypes.STRING,
+    contrato_numero: DataTypes.STRING,
+    contrato_monto_prestamo: DataTypes.DECIMAL,
+    contrato_monto_interes: DataTypes.DECIMAL,
+    contrato_monto_total_pago: DataTypes.DECIMAL,
+    contrato_fecha_deposito: DataTypes.DATE,
+    contrato_dias_prestamo: DataTypes.INTEGER,
+    contrato_dia_inicio: DataTypes.DATE,
+    contrato_dia_fin: DataTypes.DATE
 }, {
     sequelize,
     modelName: 'contratos',

@@ -5,6 +5,7 @@ import Prestamista from "../models/prestamista";
 import Solicitud from "../models/solicitud";
 
 class SolicitudController {
+
   public async save(req: Request, res: Response) {
     try {
       const dataSave = req.body;
@@ -68,6 +69,7 @@ class SolicitudController {
   //         });
   //     }
   // }
+  
 }
 
 const solicitudController = new SolicitudController();

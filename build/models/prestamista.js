@@ -13,6 +13,10 @@ Prestamista.init({
         primaryKey: true,
         autoIncrement: true
     },
+    localia_id: sequelize_1.DataTypes.INTEGER,
+    provincia_id: sequelize_1.DataTypes.INTEGER,
+    departamento_id: sequelize_1.DataTypes.INTEGER,
+    pais_id: sequelize_1.DataTypes.INTEGER,
     prestamista_codigo: sequelize_1.DataTypes.STRING,
     prestamista_nombres: sequelize_1.DataTypes.STRING,
     prestamista_apellidos: sequelize_1.DataTypes.STRING,
@@ -28,4 +32,5 @@ Prestamista.init({
     modelName: 'prestamistas',
     timestamps: false
 });
+//FK
 exports.default = Prestamista;

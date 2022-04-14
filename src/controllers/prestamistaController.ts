@@ -65,7 +65,7 @@ class PrestamistaController {
     public async save(req: Request, res: Response) {
         try {
             const dataSave = req.body;
-            const dbResponse = await User.create(dataSave,{include:"prestamista"}); 
+            const dbResponse = await User.create(dataSave, { include: "prestamista" }); 
             const dataResponse = {
                 status: true,
                 msg: 'Registro guardado',

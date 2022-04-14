@@ -34,6 +34,14 @@ class PagoController {
             }
         });
     }
+    getAll() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+            }
+            catch (error) {
+            }
+        });
+    }
 }
 const pagoController = new PagoController();
 exports.default = pagoController;
