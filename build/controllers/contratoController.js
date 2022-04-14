@@ -18,8 +18,8 @@ const cuentaAhorro_1 = __importDefault(require("../models/cuentaAhorro"));
 const estadoContrato_1 = __importDefault(require("../models/estadoContrato"));
 const prestamista_1 = __importDefault(require("../models/prestamista"));
 const solicitud_1 = __importDefault(require("../models/solicitud"));
-var pdf = require('html-pdf');
-var fs = require('fs');
+var pdf = require("html-pdf");
+var fs = require("fs");
 class ContratoController {
     save(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -28,15 +28,15 @@ class ContratoController {
                 const dbResponse = yield contrato_1.default.create(dataSave);
                 res.json({
                     status: true,
-                    msg: 'Registro guardado',
-                    data: dbResponse
+                    msg: "Registro guardado",
+                    data: dbResponse,
                 });
             }
             catch (error) {
                 res.json({
                     status: false,
-                    msg: 'ocurrio un error',
-                    dataError: error
+                    msg: "ocurrio un error",
+                    dataError: error,
                 });
             }
         });
@@ -45,25 +45,29 @@ class ContratoController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const dbResponse = yield contrato_1.default.findAll({
-                    include: [{
-                            model: estadoContrato_1.default
-                        }, {
-                            model: prestamista_1.default
-                        }, {
-                            model: solicitud_1.default
-                        }]
+                    include: [
+                        {
+                            model: estadoContrato_1.default,
+                        },
+                        {
+                            model: prestamista_1.default,
+                        },
+                        {
+                            model: solicitud_1.default,
+                        },
+                    ],
                 });
                 res.json({
                     status: true,
-                    msg: 'Lista de contratos',
-                    data: dbResponse
+                    msg: "Lista de contratos",
+                    data: dbResponse,
                 });
             }
             catch (error) {
                 res.json({
                     status: false,
-                    msg: 'ocurrio un error!',
-                    dataError: error
+                    msg: "ocurrio un error!",
+                    dataError: error,
                 });
             }
         });
@@ -82,14 +86,16 @@ class ContratoController {
                     dataPrestamista,
                     dataSolicitud,
                     dataCuenta,
-                    dataBanco
+                    dataBanco,
                 };
                 const dataPersona = {
-                    fullname: (dataPrestamista === null || dataPrestamista === void 0 ? void 0 : dataPrestamista.getDataValue("prestamista_nombres")) + " " + (dataPrestamista === null || dataPrestamista === void 0 ? void 0 : dataPrestamista.getDataValue("prestamista_apellidos")),
+                    fullname: (dataPrestamista === null || dataPrestamista === void 0 ? void 0 : dataPrestamista.getDataValue("prestamista_nombres")) +
+                        " " +
+                        (dataPrestamista === null || dataPrestamista === void 0 ? void 0 : dataPrestamista.getDataValue("prestamista_apellidos")),
                     dni: dataPrestamista === null || dataPrestamista === void 0 ? void 0 : dataPrestamista.getDataValue("prestamista_dni"),
                     domicilio: dataPrestamista === null || dataPrestamista === void 0 ? void 0 : dataPrestamista.getDataValue("prestamista_direccion"),
                     correo: dataPrestamista === null || dataPrestamista === void 0 ? void 0 : dataPrestamista.getDataValue("prestamista_correo"),
-                    departamento: "EN MANTENIMIENTO"
+                    departamento: "EN MANTENIMIENTO",
                 };
                 const dataPrestamo = {
                     cant_prestamo: dataSolicitud === null || dataSolicitud === void 0 ? void 0 : dataSolicitud.getDataValue("solictud_monto"),
@@ -316,23 +322,27 @@ class ContratoController {
                         // top: "2in",            // default is 0, units: mm, cm, in, px
                         right: "1in",
                         // bottom: "2in",
-                        left: "1in"
+                        left: "1in",
                     },
                 };
-                pdf.create(htmlPDF, opt).toFile('./html-pdf.pdf', function (err, res) {
+                pdf
+                    .create(htmlPDF, opt)
+                    .toFile("./html-pdf.pdf", function (err, response) {
                     if (err) {
                         console.log(err);
+                        res.status(400).json({
+                            status: false,
+                            msg: err,
+                            data: null,
+                        });
                     }
                     else {
-                        console.log(res);
+                        console.log(response);
+                        res.sendFile(response.filename);
                     }
                 });
-                res.json({
-                    data: allData
-                });
             }
-            catch (error) {
-            }
+            catch (error) { }
         });
     }
 }

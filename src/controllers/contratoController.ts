@@ -5,96 +5,108 @@ import CuentaAhorro from "../models/cuentaAhorro";
 import EstadoContrato from "../models/estadoContrato";
 import Prestamista from "../models/prestamista";
 import Solicitud from "../models/solicitud";
-var pdf = require('html-pdf');
-var fs = require('fs');
+var pdf = require("html-pdf");
+var fs = require("fs");
 
 class ContratoController {
-    public async save(req: Request, res: Response) {
-        try {
-            const dataSave = req.body;
-            const dbResponse = await Contrato.create(dataSave);
-            res.json({
-                status: true,
-                msg: 'Registro guardado',
-                data:dbResponse
-            });
-        } catch (error) {
-            res.json({
-                status: false,
-                msg: 'ocurrio un error',
-                dataError:error
-            });
-        }       
+  public async save(req: Request, res: Response) {
+    try {
+      const dataSave = req.body;
+      const dbResponse = await Contrato.create(dataSave);
+      res.json({
+        status: true,
+        msg: "Registro guardado",
+        data: dbResponse,
+      });
+    } catch (error) {
+      res.json({
+        status: false,
+        msg: "ocurrio un error",
+        dataError: error,
+      });
     }
+  }
 
-    public async getAll(req: Request, res: Response) {
-        try {
-            const dbResponse = await Contrato.findAll(
-            {
-                include: [{
-                    model: EstadoContrato
-                }, {
-                    model: Prestamista
-                }, {
-                    model: Solicitud
-                }]
-            }
-            );
-            res.json({
-                status: true,
-                msg: 'Lista de contratos',
-                data: dbResponse
-            });
-        } catch (error) {
-            res.json({
-                status: false,
-                msg: 'ocurrio un error!',
-                dataError:error
-            });
-        }        
+  public async getAll(req: Request, res: Response) {
+    try {
+      const dbResponse = await Contrato.findAll({
+        include: [
+          {
+            model: EstadoContrato,
+          },
+          {
+            model: Prestamista,
+          },
+          {
+            model: Solicitud,
+          },
+        ],
+      });
+      res.json({
+        status: true,
+        msg: "Lista de contratos",
+        data: dbResponse,
+      });
+    } catch (error) {
+      res.json({
+        status: false,
+        msg: "ocurrio un error!",
+        dataError: error,
+      });
     }
+  }
 
-    public async contratoPDF(req:Request,res:Response) {
-        try {
-            const id = req.params.id;
-            const dataContrato = await Contrato.findByPk(req.params.id);
-            const dataPrestamista = await Prestamista.findByPk(dataContrato?.getDataValue("prestamista_id"));
-            const dataSolicitud = await Solicitud.findByPk(dataContrato?.getDataValue("solicitud_id"));
-            const dataCuenta = await CuentaAhorro.findByPk(dataSolicitud?.getDataValue("cuenta_ahorro_id"));
-            const dataBanco = await Banco.findByPk(dataSolicitud?.getDataValue("banco_id"));
-            
-            const allData={
-                dataContrato,
-                dataPrestamista,
-                dataSolicitud,
-                dataCuenta,
-                dataBanco
-            };
+  public async contratoPDF(req: Request, res: Response) {
+    try {
+      const id = req.params.id;
+      const dataContrato = await Contrato.findByPk(req.params.id);
+      const dataPrestamista = await Prestamista.findByPk(
+        dataContrato?.getDataValue("prestamista_id")
+      );
+      const dataSolicitud = await Solicitud.findByPk(
+        dataContrato?.getDataValue("solicitud_id")
+      );
+      const dataCuenta = await CuentaAhorro.findByPk(
+        dataSolicitud?.getDataValue("cuenta_ahorro_id")
+      );
+      const dataBanco = await Banco.findByPk(
+        dataSolicitud?.getDataValue("banco_id")
+      );
 
-            const dataPersona = {
-                fullname: dataPrestamista?.getDataValue("prestamista_nombres")+" "+dataPrestamista?.getDataValue("prestamista_apellidos"),
-                dni: dataPrestamista?.getDataValue("prestamista_dni"),
-                domicilio: dataPrestamista?.getDataValue("prestamista_direccion"),
-                correo: dataPrestamista?.getDataValue("prestamista_correo"),
-                departamento: "EN MANTENIMIENTO"
-            };
+      const allData = {
+        dataContrato,
+        dataPrestamista,
+        dataSolicitud,
+        dataCuenta,
+        dataBanco,
+      };
 
-            const dataPrestamo = {
-                cant_prestamo: dataSolicitud?.getDataValue("solictud_monto"),
-                fecha_deposito:"2020-03-03",
-                dias_prestamo: 60,
-                fecha_inicio:"2020-03-03",
-                fecha_fin:"2020-03-03",
-                total_pagar_final: 80000, 
-            }
+      const dataPersona = {
+        fullname:
+          dataPrestamista?.getDataValue("prestamista_nombres") +
+          " " +
+          dataPrestamista?.getDataValue("prestamista_apellidos"),
+        dni: dataPrestamista?.getDataValue("prestamista_dni"),
+        domicilio: dataPrestamista?.getDataValue("prestamista_direccion"),
+        correo: dataPrestamista?.getDataValue("prestamista_correo"),
+        departamento: "EN MANTENIMIENTO",
+      };
 
-            const dataCuentaAhorro = {
-                num_cuenta: dataCuenta?.getDataValue("cuenta_numero"),
-                banco: dataBanco?.getDataValue("banco_name"),
+      const dataPrestamo = {
+        cant_prestamo: dataSolicitud?.getDataValue("solictud_monto"),
+        fecha_deposito: "2020-03-03",
+        dias_prestamo: 60,
+        fecha_inicio: "2020-03-03",
+        fecha_fin: "2020-03-03",
+        total_pagar_final: 80000,
+      };
 
-            };
+      const dataCuentaAhorro = {
+        num_cuenta: dataCuenta?.getDataValue("cuenta_numero"),
+        banco: dataBanco?.getDataValue("banco_name"),
+      };
 
-            const htmlPDF = `
+      const htmlPDF = `
                 <!DOCTYPE html>
                 <html>
                 <head>
@@ -301,33 +313,33 @@ class ContratoController {
                 </body>
                 </html>
             `;
-            const opt = {
-                format: "A4",
-                border: {
-                    // top: "2in",            // default is 0, units: mm, cm, in, px
-                    right: "1in",
-                    // bottom: "2in",
-                    left: "1in"
-                },
-            };
-            
-            pdf.create(htmlPDF,opt).toFile('./html-pdf.pdf', function(err:any, res:any) {
-                if (err){
-                    console.log(err);
-                } else {
-                    console.log(res);
-                }
-            });
+      const opt = {
+        format: "A4",
+        border: {
+          // top: "2in",            // default is 0, units: mm, cm, in, px
+          right: "1in",
+          // bottom: "2in",
+          left: "1in",
+        },
+      };
 
-            res.json({
-                data:allData
+      pdf
+        .create(htmlPDF, opt)
+        .toFile("./html-pdf.pdf", function (err: any, response: any) {
+          if (err) {
+            console.log(err);
+            res.status(400).json({
+              status: false,
+              msg: err,
+              data: null,
             });
-        } catch (error) {
-            
-        }
-        
-    }
-
+          } else {
+            console.log(response);
+            res.sendFile(response.filename);
+          }
+        });
+    } catch (error) {}
+  }
 }
 
 const contratoController = new ContratoController();

@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const mysql_1 = __importDefault(require("../database/mysql"));
+const localia_1 = __importDefault(require("./localia"));
 class Prestamista extends sequelize_1.Model {
 }
 Prestamista.init({
@@ -13,6 +14,7 @@ Prestamista.init({
         primaryKey: true,
         autoIncrement: true
     },
+    user_id: sequelize_1.DataTypes.INTEGER,
     localia_id: sequelize_1.DataTypes.INTEGER,
     provincia_id: sequelize_1.DataTypes.INTEGER,
     departamento_id: sequelize_1.DataTypes.INTEGER,
@@ -33,4 +35,6 @@ Prestamista.init({
     timestamps: false
 });
 //FK
+Prestamista.belongsTo(localia_1.default, { as: 'localia', foreignKey: 'localia_id' });
+localia_1.default.hasMany(Prestamista, { as: 'prestamistas', foreignKey: 'localia_id' });
 exports.default = Prestamista;

@@ -20,7 +20,15 @@ Contrato.init({
     estado_contrato_id: sequelize_1.DataTypes.INTEGER,
     solicitud_id: sequelize_1.DataTypes.INTEGER,
     contrato_fecha: sequelize_1.DataTypes.DATE,
-    contrato_url_file: sequelize_1.DataTypes.STRING
+    contrato_url_file: sequelize_1.DataTypes.STRING,
+    contrato_numero: sequelize_1.DataTypes.STRING,
+    contrato_monto_prestamo: sequelize_1.DataTypes.DECIMAL,
+    contrato_monto_interes: sequelize_1.DataTypes.DECIMAL,
+    contrato_monto_total_pago: sequelize_1.DataTypes.DECIMAL,
+    contrato_fecha_deposito: sequelize_1.DataTypes.DATE,
+    contrato_dias_prestamo: sequelize_1.DataTypes.INTEGER,
+    contrato_dia_inicio: sequelize_1.DataTypes.DATE,
+    contrato_dia_fin: sequelize_1.DataTypes.DATE
 }, {
     sequelize: mysql_1.default,
     modelName: 'contratos',
