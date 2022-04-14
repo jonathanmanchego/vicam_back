@@ -1,6 +1,9 @@
 import { Model, DataTypes } from 'sequelize';
 import sequelize from '../database/mysql';
+import Departamento from './departamento';
 import Localia from './localia';
+import Pais from './pais';
+import Provincia from './provincia';
 
 class Prestamista extends Model { }
 
@@ -33,4 +36,15 @@ Prestamista.init({
 //FK
 Prestamista.belongsTo(Localia, { as: 'localia', foreignKey: 'localia_id' });
 Localia.hasMany(Prestamista, { as: 'prestamistas', foreignKey: 'localia_id' });
+
+Prestamista.belongsTo(Provincia, { as: 'provincia', foreignKey: 'provincia_id' });
+Provincia.hasMany(Prestamista, { as: 'prestamistas', foreignKey: 'provincia_id' });
+
+Prestamista.belongsTo(Departamento, { as: 'departamento', foreignKey: 'departamento_id' });
+Departamento.hasMany(Prestamista, { as: 'prestamistas', foreignKey: 'departamento_id' });
+
+Prestamista.belongsTo(Pais, { as: 'pais', foreignKey: 'pais_id' });
+Pais.hasMany(Prestamista, { as: 'prestamistas', foreignKey: 'pais_id' });
+
+
 export default Prestamista;

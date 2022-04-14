@@ -3,6 +3,9 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import Prestamista from "../models/prestamista";
 import User from "../models/user";
+import Pais from "../models/pais";
+import Departamento from "../models/departamento";
+import Contrato from "../models/contrato";
 
 class PrestamistaController { 
     public async encryptPasword(password: string): Promise<string> {
@@ -41,10 +44,23 @@ class PrestamistaController {
      */
     public async getAll(req: Request, res: Response) {
         try {
-            const dbResponse = await Prestamista.findAll();
+            const dbResponse = await Prestamista.findAll({
+                include: [{
+                    model: Pais,
+                    as:'pais'
+                }, {
+                    model: Departamento,
+                    as:'departamento'
+                }, {
+                    model: Contrato,
+                    as: 'contrato'
+                }, {
+                        
+                }]
+            });
             const dataResponse = {
                 status: true,
-                msg: 'Lista de prestamistas!',
+                msg: 'Lista de prestamistas!asas',
                 data: dbResponse
             };
             res.json(dataResponse);

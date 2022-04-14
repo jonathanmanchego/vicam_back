@@ -7,8 +7,11 @@ const sequelize_1 = require("sequelize");
 const mysql_1 = __importDefault(require("../database/mysql"));
 const estadoSolicitud_1 = __importDefault(require("./estadoSolicitud"));
 const cuentaAhorro_1 = __importDefault(require("./cuentaAhorro"));
+const tarjeta_1 = __importDefault(require("./tarjeta"));
 const prestamista_1 = __importDefault(require("./prestamista"));
 const banco_1 = __importDefault(require("./banco"));
+const plazoPago_1 = __importDefault(require("./plazoPago"));
+const empleado_1 = __importDefault(require("./empleado"));
 class Solicitud extends sequelize_1.Model {
 }
 Solicitud.init({
@@ -36,11 +39,26 @@ Solicitud.init({
     modelName: 'solicitudes',
     timestamps: false
 });
-estadoSolicitud_1.default.hasMany(Solicitud, { foreignKey: "estado_solicitud_id" });
-prestamista_1.default.hasMany(Solicitud, { foreignKey: "prestamista_id" });
-Solicitud.belongsTo(prestamista_1.default, { foreignKey: "prestamista_id" });
-Solicitud.belongsTo(cuentaAhorro_1.default, { foreignKey: "cuenta_ahorro_id" });
-Solicitud.belongsTo(banco_1.default, { foreignKey: "banco_id" });
+//FK's
+Solicitud.belongsTo(estadoSolicitud_1.default, { as: 'estado_solicitud', foreignKey: 'estado_solicitud_id' });
+estadoSolicitud_1.default.hasMany(Solicitud, { as: 'solicitud', foreignKey: 'estado_solicitud_id' });
+Solicitud.belongsTo(cuentaAhorro_1.default, { as: 'cuenta_ahorro', foreignKey: 'cuenta_ahorro_id' });
+cuentaAhorro_1.default.hasMany(Solicitud, { as: 'solicitud', foreignKey: 'cuenta_ahorro_id' });
+Solicitud.belongsTo(tarjeta_1.default, { as: 'tarjeta', foreignKey: 'tarjeta_id' });
+tarjeta_1.default.hasMany(Solicitud, { as: 'solicitud', foreignKey: 'tarjeta_id' });
+Solicitud.belongsTo(prestamista_1.default, { as: 'prestamista', foreignKey: 'prestamista_id' });
+prestamista_1.default.hasMany(Solicitud, { as: 'solicitud', foreignKey: 'prestamista_id' });
+Solicitud.belongsTo(banco_1.default, { as: 'banco', foreignKey: 'banco_id' });
+banco_1.default.hasMany(Solicitud, { as: 'solicitud', foreignKey: 'banco_id' });
+Solicitud.belongsTo(plazoPago_1.default, { as: 'plazo_pago', foreignKey: 'plazo_pago_id' });
+plazoPago_1.default.hasMany(Solicitud, { as: 'solicitud', foreignKey: 'plazo_pago_id' });
+Solicitud.belongsTo(empleado_1.default, { as: 'empleado', foreignKey: 'empleado_id' });
+empleado_1.default.hasMany(Solicitud, { as: 'solicitud', foreignKey: 'empleado_id' });
+// EstadoSolicitud.hasMany(Solicitud,{foreignKey:"estado_solicitud_id"});
+// Prestamista.hasMany(Solicitud,{foreignKey:"prestamista_id"});
+// Solicitud.belongsTo(Prestamista,{foreignKey:"prestamista_id"});
+// Solicitud.belongsTo(CuentaAhorro,{foreignKey:"cuenta_ahorro_id"});
+// Solicitud.belongsTo(Banco,{foreignKey:"banco_id"});
 // Solicitud.belongsTo(EstadoSolicitud);
 // Solicitud.belongsTo(CuentaAhorro,{foreignKey:"cuenta_ahorro_id"});
 // Solicitud.belongsTo(Tarjeta,{foreignKey:"tarjeta_id"});

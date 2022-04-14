@@ -30,10 +30,15 @@ Contrato.init({
     modelName: 'contratos',
     timestamps: false
 });
+//FK's
+Contrato.belongsTo(Solicitud, { as: 'solicitud', foreignKey: "solicitud_id" });
+Solicitud.hasMany(Contrato, { as: 'contrato', foreignKey: "solicitud_id" });
 
-Contrato.belongsTo(Solicitud, { foreignKey: "solicitud_id" });
-Contrato.belongsTo(Prestamista, { foreignKey: "prestamista_id" });
-Contrato.belongsTo(EstadoContrato, { foreignKey: "estado_contrato_id" });
+Contrato.belongsTo(Prestamista, { as: 'prestamista', foreignKey: "prestamista_id" });
+Prestamista.hasMany(Contrato, { as: 'contrato', foreignKey: "prestamista_id" });
+
+Contrato.belongsTo(EstadoContrato, { as: 'estado_contrato', foreignKey: "estado_contrato_id" });
+EstadoContrato.hasMany(Contrato, { as: 'contrato', foreignKey: "estado_contrato_id" });
 
 
 export default Contrato;

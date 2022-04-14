@@ -35,13 +35,35 @@ Solicitud.init({
     modelName: 'solicitudes',
     timestamps: false
 });
+//FK's
 
-EstadoSolicitud.hasMany(Solicitud,{foreignKey:"estado_solicitud_id"});
-Prestamista.hasMany(Solicitud,{foreignKey:"prestamista_id"});
+Solicitud.belongsTo(EstadoSolicitud,{as:'estado_solicitud',foreignKey:'estado_solicitud_id'});
+EstadoSolicitud.hasMany(Solicitud, { as: 'solicitud', foreignKey: 'estado_solicitud_id' });
 
-Solicitud.belongsTo(Prestamista,{foreignKey:"prestamista_id"});
-Solicitud.belongsTo(CuentaAhorro,{foreignKey:"cuenta_ahorro_id"});
-Solicitud.belongsTo(Banco,{foreignKey:"banco_id"});
+Solicitud.belongsTo(CuentaAhorro, { as: 'cuenta_ahorro', foreignKey: 'cuenta_ahorro_id' });
+CuentaAhorro.hasMany(Solicitud, { as: 'solicitud', foreignKey: 'cuenta_ahorro_id' });
+
+Solicitud.belongsTo(Tarjeta, { as: 'tarjeta', foreignKey: 'tarjeta_id' });
+Tarjeta.hasMany(Solicitud, { as: 'solicitud', foreignKey: 'tarjeta_id' });
+
+Solicitud.belongsTo(Prestamista, { as: 'prestamista', foreignKey: 'prestamista_id' });
+Prestamista.hasMany(Solicitud, { as: 'solicitud', foreignKey: 'prestamista_id' });
+
+Solicitud.belongsTo(Banco, { as: 'banco', foreignKey: 'banco_id' });
+Banco.hasMany(Solicitud, { as: 'solicitud', foreignKey: 'banco_id' });
+
+Solicitud.belongsTo(PlazoPago, { as: 'plazo_pago', foreignKey: 'plazo_pago_id' });
+PlazoPago.hasMany(Solicitud, { as: 'solicitud', foreignKey: 'plazo_pago_id' });
+
+Solicitud.belongsTo(Empleado, { as: 'empleado', foreignKey: 'empleado_id' });
+Empleado.hasMany(Solicitud, { as: 'solicitud', foreignKey: 'empleado_id' });
+
+// EstadoSolicitud.hasMany(Solicitud,{foreignKey:"estado_solicitud_id"});
+// Prestamista.hasMany(Solicitud,{foreignKey:"prestamista_id"});
+
+// Solicitud.belongsTo(Prestamista,{foreignKey:"prestamista_id"});
+// Solicitud.belongsTo(CuentaAhorro,{foreignKey:"cuenta_ahorro_id"});
+// Solicitud.belongsTo(Banco,{foreignKey:"banco_id"});
 // Solicitud.belongsTo(EstadoSolicitud);
 // Solicitud.belongsTo(CuentaAhorro,{foreignKey:"cuenta_ahorro_id"});
 // Solicitud.belongsTo(Tarjeta,{foreignKey:"tarjeta_id"});

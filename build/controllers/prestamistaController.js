@@ -15,6 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const prestamista_1 = __importDefault(require("../models/prestamista"));
 const user_1 = __importDefault(require("../models/user"));
+const pais_1 = __importDefault(require("../models/pais"));
+const departamento_1 = __importDefault(require("../models/departamento"));
+const contrato_1 = __importDefault(require("../models/contrato"));
 class PrestamistaController {
     encryptPasword(password) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -58,10 +61,21 @@ class PrestamistaController {
     getAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const dbResponse = yield prestamista_1.default.findAll();
+                const dbResponse = yield prestamista_1.default.findAll({
+                    include: [{
+                            model: pais_1.default,
+                            as: 'pais'
+                        }, {
+                            model: departamento_1.default,
+                            as: 'departamento'
+                        }, {
+                            model: contrato_1.default,
+                            as: 'contrato'
+                        }]
+                });
                 const dataResponse = {
                     status: true,
-                    msg: 'Lista de prestamistas!',
+                    msg: 'Lista de prestamistas!asas',
                     data: dbResponse
                 };
                 res.json(dataResponse);
