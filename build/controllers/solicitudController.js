@@ -26,10 +26,14 @@ class SolicitudController {
             try {
                 const dataSave = req.body;
                 const dbResponse = yield solicitud_1.default.create(dataSave);
+                const id = dbResponse.getDataValue('id');
+                const solicitud_numero = { solicitud_numero: id };
+                yield solicitud_1.default.update(solicitud_numero, { where: { id: id } });
+                const dbResponse2 = yield solicitud_1.default.findByPk(id);
                 res.json({
                     status: true,
                     msg: "Registro guardado",
-                    data: dbResponse,
+                    data: dbResponse2
                 });
             }
             catch (error) {

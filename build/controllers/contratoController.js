@@ -26,10 +26,14 @@ class ContratoController {
             try {
                 const dataSave = req.body;
                 const dbResponse = yield contrato_1.default.create(dataSave);
+                const id = dbResponse.getDataValue('id');
+                const contrato_numero = { contrato_numero: id };
+                yield contrato_1.default.update(contrato_numero, { where: { id: id } });
+                const dbResponse2 = yield contrato_1.default.findByPk(id);
                 res.json({
                     status: true,
                     msg: "Registro guardado",
-                    data: dbResponse,
+                    data: dbResponse2,
                 });
             }
             catch (error) {

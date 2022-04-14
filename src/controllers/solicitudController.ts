@@ -14,10 +14,14 @@ class SolicitudController {
     try {
       const dataSave = req.body;
       const dbResponse = await Solicitud.create(dataSave);
+      const id = dbResponse.getDataValue('id');
+      const solicitud_numero = { solicitud_numero: id }
+      await Solicitud.update(solicitud_numero, { where: { id: id } });
+      const dbResponse2 = await Solicitud.findByPk(id);
       res.json({
         status: true,
         msg: "Registro guardado",
-        data: dbResponse,
+        data: dbResponse2
       });
     } catch (error) {
       res.status(402).json({

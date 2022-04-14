@@ -13,10 +13,14 @@ class ContratoController {
     try {
       const dataSave = req.body;
       const dbResponse = await Contrato.create(dataSave);
+      const id = dbResponse.getDataValue('id');
+      const contrato_numero = { contrato_numero: id };
+      await Contrato.update(contrato_numero, { where: { id: id } });
+      const dbResponse2 = await Contrato.findByPk(id);
       res.json({
         status: true,
         msg: "Registro guardado",
-        data: dbResponse,
+        data: dbResponse2,
       });
     } catch (error) {
       res.json({
