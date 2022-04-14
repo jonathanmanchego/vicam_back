@@ -72,7 +72,10 @@ class PrestamistaController {
                             as: 'departamento'
                         }, {
                             model: contrato_1.default,
-                            as: 'contrato'
+                            as: 'contrato',
+                            where: {
+                                estado_contrato_id: 2 ///PENDIENTE
+                            }
                         }, {
                             model: tarjeta_1.default,
                             as: 'tarjeta'

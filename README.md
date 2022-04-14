@@ -72,6 +72,8 @@ guardar contrato: localhost:3000/api/contratos/
 - 2 ACEPTADO
 - 3 RECHAZADO CLIENTE
 - 4 RECHAZADO EMPRESA
+- 5 APROBADO - FIRMADO
+- 6 FINALIZADO
 
 ///ROLES
 
