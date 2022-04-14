@@ -40,10 +40,13 @@ Prestamista.init({
 //FK
 Prestamista.belongsTo(localia_1.default, { as: 'localia', foreignKey: 'localia_id' });
 localia_1.default.hasMany(Prestamista, { as: 'prestamistas', foreignKey: 'localia_id' });
+<<<<<<< HEAD
 Prestamista.belongsTo(provincia_1.default, { as: 'provincia', foreignKey: 'provincia_id' });
 provincia_1.default.hasMany(Prestamista, { as: 'prestamistas', foreignKey: 'provincia_id' });
 Prestamista.belongsTo(departamento_1.default, { as: 'departamento', foreignKey: 'departamento_id' });
 departamento_1.default.hasMany(Prestamista, { as: 'prestamistas', foreignKey: 'departamento_id' });
 Prestamista.belongsTo(pais_1.default, { as: 'pais', foreignKey: 'pais_id' });
 pais_1.default.hasMany(Prestamista, { as: 'prestamistas', foreignKey: 'pais_id' });
+=======
+>>>>>>> 15aa1e621b480c94972c063d687552da52b80551
 exports.default = Prestamista;
