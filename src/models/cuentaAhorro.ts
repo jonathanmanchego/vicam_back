@@ -26,7 +26,7 @@ CuentaAhorro.belongsTo(Tarjeta, { as: 'tarjeta', foreignKey: 'tarjeta_id' });
 Tarjeta.hasMany(CuentaAhorro, { as: 'cuenta_ahorro', foreignKey: 'tarjeta_id' });
 
 CuentaAhorro.belongsTo(Prestamista, { as: 'prestamista', foreignKey: 'prestamista_id' });
-Prestamista.hasMany(CuentaAhorro, { as: 'cuenta_ahorro', foreignKey: 'cuenta_ahorro_id' });
+Prestamista.hasMany(CuentaAhorro, { as: 'cuenta_ahorro', foreignKey: 'prestamista_id' });
 
 CuentaAhorro.belongsTo(Banco, { as: 'banco', foreignKey: 'banco_id' });
 Banco.hasMany(CuentaAhorro, { as: 'cuenta_ahorro', foreignKey: 'banco_id' });

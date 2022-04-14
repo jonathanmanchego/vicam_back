@@ -29,7 +29,7 @@ CuentaAhorro.init({
 CuentaAhorro.belongsTo(tarjeta_1.default, { as: 'tarjeta', foreignKey: 'tarjeta_id' });
 tarjeta_1.default.hasMany(CuentaAhorro, { as: 'cuenta_ahorro', foreignKey: 'tarjeta_id' });
 CuentaAhorro.belongsTo(prestamista_1.default, { as: 'prestamista', foreignKey: 'prestamista_id' });
-prestamista_1.default.hasMany(CuentaAhorro, { as: 'cuenta_ahorro', foreignKey: 'cuenta_ahorro_id' });
+prestamista_1.default.hasMany(CuentaAhorro, { as: 'cuenta_ahorro', foreignKey: 'prestamista_id' });
 CuentaAhorro.belongsTo(banco_1.default, { as: 'banco', foreignKey: 'banco_id' });
 banco_1.default.hasMany(CuentaAhorro, { as: 'cuenta_ahorro', foreignKey: 'banco_id' });
 exports.default = CuentaAhorro;

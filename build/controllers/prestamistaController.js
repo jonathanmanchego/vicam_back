@@ -18,7 +18,8 @@ const user_1 = __importDefault(require("../models/user"));
 const pais_1 = __importDefault(require("../models/pais"));
 const departamento_1 = __importDefault(require("../models/departamento"));
 const contrato_1 = __importDefault(require("../models/contrato"));
-const solicitud_1 = __importDefault(require("../models/solicitud"));
+const tarjeta_1 = __importDefault(require("../models/tarjeta"));
+const cuentaAhorro_1 = __importDefault(require("../models/cuentaAhorro"));
 class PrestamistaController {
     encryptPasword(password) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -73,9 +74,13 @@ class PrestamistaController {
                             model: contrato_1.default,
                             as: 'contrato'
                         }, {
-                            model: solicitud_1.default,
-                            as: 'solicitud'
-                        }]
+                            model: tarjeta_1.default,
+                            as: 'tarjeta'
+                        }, {
+                            model: cuentaAhorro_1.default,
+                            as: 'cuenta_ahorro'
+                        }
+                    ]
                 });
                 const dataResponse = {
                     status: true,

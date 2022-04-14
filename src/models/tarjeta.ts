@@ -30,7 +30,7 @@ Tarjeta.belongsTo(Banco, { as: 'banco', foreignKey: 'banco_id' });
 Banco.hasMany(Tarjeta, { as: 'tarjeta', foreignKey: 'banco_id' });
 
 Tarjeta.belongsTo(Prestamista, { as: 'prestamista', foreignKey: 'prestamista_id' });
-Prestamista.hasMany(Tarjeta, { as: 'tarjeta', foreignKey: 'tarjeta_id' });
+Prestamista.hasMany(Tarjeta, { as: 'tarjeta', foreignKey: 'prestamista_id' });
 
 Tarjeta.belongsTo(TipoTarjeta, { as: 'tipo_tarjeta', foreignKey: 'tipo_tarjeta_id' });
 TipoTarjeta.hasMany(Tarjeta, { as: 'tarjeta', foreignKey: 'tipo_tarjeta_id' });

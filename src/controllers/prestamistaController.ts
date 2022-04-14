@@ -7,6 +7,8 @@ import Pais from "../models/pais";
 import Departamento from "../models/departamento";
 import Contrato from "../models/contrato";
 import Solicitud from "../models/solicitud";
+import Tarjeta from "../models/tarjeta";
+import CuentaAhorro from "../models/cuentaAhorro";
 
 class PrestamistaController { 
     public async encryptPasword(password: string): Promise<string> {
@@ -56,9 +58,13 @@ class PrestamistaController {
                     model: Contrato,
                     as: 'contrato'
                 }, {
-                    model: Solicitud,
-                    as: 'solicitud'
-                }]
+                    model: Tarjeta,
+                    as: 'tarjeta'
+                }, {
+                    model: CuentaAhorro,
+                    as:'cuenta_ahorro'
+                }
+                ]
             });
             const dataResponse = {
                 status: true,
