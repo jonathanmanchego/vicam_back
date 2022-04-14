@@ -20,8 +20,8 @@ Pago.init({
     prestamista_id: sequelize_1.DataTypes.INTEGER,
     contrato_id: sequelize_1.DataTypes.INTEGER,
     pago_numero: sequelize_1.DataTypes.STRING,
-    pago_fecha_inicio: sequelize_1.DataTypes.DATE,
-    pago_fecha_fin: sequelize_1.DataTypes.DATE,
+    pago_fecha_inicio: sequelize_1.DataTypes.DATEONLY,
+    pago_fecha_fin: sequelize_1.DataTypes.DATEONLY,
     pago_monto_capital: sequelize_1.DataTypes.DECIMAL,
     pago_monto_interes: sequelize_1.DataTypes.DECIMAL,
     pago_tasa_interes: sequelize_1.DataTypes.DECIMAL

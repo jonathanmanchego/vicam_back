@@ -13,6 +13,7 @@ class SolicitudRoutes {
     config() {
         this.router.post('/', solicitudController_1.default.save);
         this.router.get('/', solicitudController_1.default.getAll);
+        this.router.put('/:id', solicitudController_1.default.update);
     }
 }
 const solicitudRoutes = new SolicitudRoutes();

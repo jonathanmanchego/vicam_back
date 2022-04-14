@@ -24,7 +24,7 @@ Solicitud.init({
     plazo_pago_id: DataTypes.INTEGER,
     empleado_id: DataTypes.INTEGER,
     solicitud_numero: DataTypes.STRING,
-    solicitud_fecha: DataTypes.DATE,
+    solicitud_fecha: DataTypes.DATEONLY,
     solicitud_numero_deposito: DataTypes.STRING,
     solicitud_boucher: DataTypes.STRING,
     solicitud_duracion_meses: DataTypes.INTEGER,

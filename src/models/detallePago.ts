@@ -14,7 +14,7 @@ DetallePago.init({
     pago_id: DataTypes.INTEGER,
     ep_id: DataTypes.INTEGER,
     dp_monto_capital: DataTypes.DECIMAL,
-    dp_fecha_limite: DataTypes.DATE,
+    dp_fecha_limite: DataTypes.DATEONLY,
     dp_monto_interes: DataTypes.DECIMAL,
     dp_monto_penalidad: DataTypes.DECIMAL,
 }, {

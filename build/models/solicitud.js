@@ -28,7 +28,7 @@ Solicitud.init({
     plazo_pago_id: sequelize_1.DataTypes.INTEGER,
     empleado_id: sequelize_1.DataTypes.INTEGER,
     solicitud_numero: sequelize_1.DataTypes.STRING,
-    solicitud_fecha: sequelize_1.DataTypes.DATE,
+    solicitud_fecha: sequelize_1.DataTypes.DATEONLY,
     solicitud_numero_deposito: sequelize_1.DataTypes.STRING,
     solicitud_boucher: sequelize_1.DataTypes.STRING,
     solicitud_duracion_meses: sequelize_1.DataTypes.INTEGER,

@@ -12,6 +12,7 @@ class SolicitudRoutes {
     config(): void {
         this.router.post('/',solicitudController.save);
         this.router.get('/',solicitudController.getAll);
+        this.router.put('/:id',solicitudController.update);
     }
 }
 

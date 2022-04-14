@@ -16,8 +16,8 @@ Pago.init({
     prestamista_id: DataTypes.INTEGER,
     contrato_id: DataTypes.INTEGER,
     pago_numero: DataTypes.STRING,
-    pago_fecha_inicio: DataTypes.DATE,
-    pago_fecha_fin: DataTypes.DATE,
+    pago_fecha_inicio: DataTypes.DATEONLY,
+    pago_fecha_fin: DataTypes.DATEONLY,
     pago_monto_capital: DataTypes.DECIMAL,
     pago_monto_interes: DataTypes.DECIMAL,
     pago_tasa_interes: DataTypes.DECIMAL
