@@ -14,8 +14,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const banco_1 = __importDefault(require("../models/banco"));
 const cuentaAhorro_1 = __importDefault(require("../models/cuentaAhorro"));
+const empleado_1 = __importDefault(require("../models/empleado"));
+const estadoSolicitud_1 = __importDefault(require("../models/estadoSolicitud"));
+const plazoPago_1 = __importDefault(require("../models/plazoPago"));
 const prestamista_1 = __importDefault(require("../models/prestamista"));
 const solicitud_1 = __importDefault(require("../models/solicitud"));
+const tarjeta_1 = __importDefault(require("../models/tarjeta"));
 class SolicitudController {
     save(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -40,17 +44,37 @@ class SolicitudController {
     getAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
+                // const dbResponse = await Solicitud.findAll();
                 const dbResponse = yield solicitud_1.default.findAll({
                     include: [
                         {
                             model: prestamista_1.default,
+                            as: 'prestamista'
                         },
                         {
                             model: cuentaAhorro_1.default,
+                            as: 'cuenta_ahorro'
                         },
                         {
                             model: banco_1.default,
+                            as: 'banco'
                         },
+                        {
+                            model: estadoSolicitud_1.default,
+                            as: 'estado_solicitud'
+                        },
+                        {
+                            model: tarjeta_1.default,
+                            as: 'tarjeta'
+                        },
+                        {
+                            model: plazoPago_1.default,
+                            as: 'plazo_pago'
+                        },
+                        {
+                            model: empleado_1.default,
+                            as: 'empleado'
+                        }
                     ],
                 });
                 res.json({

@@ -1,8 +1,12 @@
 import { Request, Response } from "express";
 import Banco from "../models/banco";
 import CuentaAhorro from "../models/cuentaAhorro";
+import Empleado from "../models/empleado";
+import EstadoSolicitud from "../models/estadoSolicitud";
+import PlazoPago from "../models/plazoPago";
 import Prestamista from "../models/prestamista";
 import Solicitud from "../models/solicitud";
+import Tarjeta from "../models/tarjeta";
 
 class SolicitudController {
 
@@ -26,17 +30,37 @@ class SolicitudController {
 
   public async getAll(req: Request, res: Response) {
     try {
+      // const dbResponse = await Solicitud.findAll();
       const dbResponse = await Solicitud.findAll({
         include: [
           {
             model: Prestamista,
+            as: 'prestamista'
           },
           {
             model: CuentaAhorro,
+            as: 'cuenta_ahorro'
           },
           {
             model: Banco,
+            as: 'banco'
           },
+          {
+            model: EstadoSolicitud,
+            as: 'estado_solicitud'
+          },
+          {
+            model: Tarjeta,
+            as: 'tarjeta'
+          },
+          {
+            model: PlazoPago,
+            as: 'plazo_pago'
+          },
+          {
+            model: Empleado,
+            as: 'empleado'
+          }
         ],
       });
       res.json({

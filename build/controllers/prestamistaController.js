@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const { Op } = require("sequelize");
 const prestamista_1 = __importDefault(require("../models/prestamista"));
 const user_1 = __importDefault(require("../models/user"));
 const pais_1 = __importDefault(require("../models/pais"));
@@ -74,7 +75,9 @@ class PrestamistaController {
                             model: contrato_1.default,
                             as: 'contrato',
                             where: {
-                                estado_contrato_id: 2 ///PENDIENTE
+                                estado_contrato_id: {
+                                    [Op.ne]: 6 ///DIFERENTE A FINALIZADO
+                                }
                             }
                         }, {
                             model: tarjeta_1.default,

@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+
+const { Op } = require("sequelize");
+
 import Prestamista from "../models/prestamista";
 import User from "../models/user";
 import Pais from "../models/pais";
@@ -58,7 +61,9 @@ class PrestamistaController {
                     model: Contrato,
                     as: 'contrato',
                     where: {
-                        estado_contrato_id:2 ///PENDIENTE
+                        estado_contrato_id: {
+                            [Op.ne]: 6 ///DIFERENTE A FINALIZADO
+                        } 
                     }
                 }, {
                     model: Tarjeta,
