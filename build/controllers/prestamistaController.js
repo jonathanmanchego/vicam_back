@@ -18,6 +18,7 @@ const user_1 = __importDefault(require("../models/user"));
 const pais_1 = __importDefault(require("../models/pais"));
 const departamento_1 = __importDefault(require("../models/departamento"));
 const contrato_1 = __importDefault(require("../models/contrato"));
+const solicitud_1 = __importDefault(require("../models/solicitud"));
 class PrestamistaController {
     encryptPasword(password) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -71,6 +72,9 @@ class PrestamistaController {
                         }, {
                             model: contrato_1.default,
                             as: 'contrato'
+                        }, {
+                            model: solicitud_1.default,
+                            as: 'solicitud'
                         }]
                 });
                 const dataResponse = {

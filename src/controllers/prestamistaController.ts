@@ -6,6 +6,7 @@ import User from "../models/user";
 import Pais from "../models/pais";
 import Departamento from "../models/departamento";
 import Contrato from "../models/contrato";
+import Solicitud from "../models/solicitud";
 
 class PrestamistaController { 
     public async encryptPasword(password: string): Promise<string> {
@@ -55,7 +56,8 @@ class PrestamistaController {
                     model: Contrato,
                     as: 'contrato'
                 }, {
-                        
+                    model: Solicitud,
+                    as: 'solicitud'
                 }]
             });
             const dataResponse = {

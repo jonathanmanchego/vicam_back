@@ -5,6 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const mysql_1 = __importDefault(require("../database/mysql"));
+const contrato_1 = __importDefault(require("./contrato"));
+const plazoPago_1 = __importDefault(require("./plazoPago"));
+const prestamista_1 = __importDefault(require("./prestamista"));
 class Pago extends sequelize_1.Model {
 }
 Pago.init({
@@ -27,4 +30,11 @@ Pago.init({
     modelName: 'pagos',
     timestamps: false
 });
+//FK's
+Pago.belongsTo(plazoPago_1.default, { as: 'plazo_pago', foreignKey: 'plazo_pago_id' });
+plazoPago_1.default.hasMany(Pago, { as: 'pago', foreignKey: 'plazo_pago_id' });
+Pago.belongsTo(prestamista_1.default, { as: 'prestamista', foreignKey: 'prestamista_id' });
+prestamista_1.default.hasMany(Pago, { as: 'pago', foreignKey: 'prestamista_id' });
+Pago.belongsTo(contrato_1.default, { as: 'contrato', foreignKey: 'contrato_id' });
+contrato_1.default.hasMany(Pago, { as: 'pago', foreignKey: 'contrato_id' });
 exports.default = Pago;
