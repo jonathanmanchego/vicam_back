@@ -5,9 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const mysql_1 = __importDefault(require("../database/mysql"));
+const banco_1 = __importDefault(require("./banco"));
+const cuentaAhorro_1 = __importDefault(require("./cuentaAhorro"));
 const estadoContrato_1 = __importDefault(require("./estadoContrato"));
 const prestamista_1 = __importDefault(require("./prestamista"));
 const solicitud_1 = __importDefault(require("./solicitud"));
+const tarjeta_1 = __importDefault(require("./tarjeta"));
 class Contrato extends sequelize_1.Model {
 }
 Contrato.init({
@@ -19,6 +22,9 @@ Contrato.init({
     prestamista_id: sequelize_1.DataTypes.INTEGER,
     estado_contrato_id: sequelize_1.DataTypes.INTEGER,
     solicitud_id: sequelize_1.DataTypes.INTEGER,
+    cuenta_ahorro_id: sequelize_1.DataTypes.INTEGER,
+    tarjeta_id: sequelize_1.DataTypes.INTEGER,
+    banco_id: sequelize_1.DataTypes.INTEGER,
     contrato_fecha: sequelize_1.DataTypes.DATEONLY,
     contrato_url_file: sequelize_1.DataTypes.STRING,
     contrato_numero: sequelize_1.DataTypes.STRING,
@@ -41,4 +47,10 @@ Contrato.belongsTo(prestamista_1.default, { as: 'prestamista', foreignKey: "pres
 prestamista_1.default.hasMany(Contrato, { as: 'contrato', foreignKey: "prestamista_id" });
 Contrato.belongsTo(estadoContrato_1.default, { as: 'estado_contrato', foreignKey: "estado_contrato_id" });
 estadoContrato_1.default.hasMany(Contrato, { as: 'contrato', foreignKey: "estado_contrato_id" });
+Contrato.belongsTo(cuentaAhorro_1.default, { as: 'cuenta_ahorro', foreignKey: "cuenta_ahorro_id" });
+cuentaAhorro_1.default.hasMany(Contrato, { as: 'contrato', foreignKey: "cuenta_ahorro_id" });
+Contrato.belongsTo(tarjeta_1.default, { as: 'tarjeta', foreignKey: "tarjeta_id" });
+tarjeta_1.default.hasMany(Contrato, { as: 'contrato', foreignKey: 'tarjeta_id' });
+Contrato.belongsTo(banco_1.default, { as: 'banco', foreignKey: "banco_id" });
+banco_1.default.hasMany(Contrato, { as: 'contrato', foreignKey: "banco_id" });
 exports.default = Contrato;

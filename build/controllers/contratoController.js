@@ -18,6 +18,7 @@ const cuentaAhorro_1 = __importDefault(require("../models/cuentaAhorro"));
 const estadoContrato_1 = __importDefault(require("../models/estadoContrato"));
 const prestamista_1 = __importDefault(require("../models/prestamista"));
 const solicitud_1 = __importDefault(require("../models/solicitud"));
+const tarjeta_1 = __importDefault(require("../models/tarjeta"));
 var pdf = require("html-pdf");
 var fs = require("fs");
 class ContratoController {
@@ -52,13 +53,28 @@ class ContratoController {
                     include: [
                         {
                             model: estadoContrato_1.default,
+                            as: 'estado_contrato'
                         },
                         {
                             model: prestamista_1.default,
+                            as: 'prestamista'
+                        },
+                        // {
+                        //   model: Solicitud,
+                        //   as: 'solicitud'
+                        // },
+                        {
+                            model: cuentaAhorro_1.default,
+                            as: 'cuenta_ahorro'
                         },
                         {
-                            model: solicitud_1.default,
+                            model: tarjeta_1.default,
+                            as: 'tarjeta'
                         },
+                        {
+                            model: banco_1.default,
+                            as: 'banco'
+                        }
                     ],
                 });
                 res.json({
@@ -80,18 +96,11 @@ class ContratoController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const id = req.params.id;
-                const dataContrato = yield contrato_1.default.findByPk(req.params.id);
+                const dataContrato = yield contrato_1.default.findByPk(id);
                 const dataPrestamista = yield prestamista_1.default.findByPk(dataContrato === null || dataContrato === void 0 ? void 0 : dataContrato.getDataValue("prestamista_id"));
                 const dataSolicitud = yield solicitud_1.default.findByPk(dataContrato === null || dataContrato === void 0 ? void 0 : dataContrato.getDataValue("solicitud_id"));
                 const dataCuenta = yield cuentaAhorro_1.default.findByPk(dataSolicitud === null || dataSolicitud === void 0 ? void 0 : dataSolicitud.getDataValue("cuenta_ahorro_id"));
                 const dataBanco = yield banco_1.default.findByPk(dataSolicitud === null || dataSolicitud === void 0 ? void 0 : dataSolicitud.getDataValue("banco_id"));
-                const allData = {
-                    dataContrato,
-                    dataPrestamista,
-                    dataSolicitud,
-                    dataCuenta,
-                    dataBanco,
-                };
                 const dataPersona = {
                     fullname: (dataPrestamista === null || dataPrestamista === void 0 ? void 0 : dataPrestamista.getDataValue("prestamista_nombres")) +
                         " " +
@@ -100,6 +109,7 @@ class ContratoController {
                     domicilio: dataPrestamista === null || dataPrestamista === void 0 ? void 0 : dataPrestamista.getDataValue("prestamista_direccion"),
                     correo: dataPrestamista === null || dataPrestamista === void 0 ? void 0 : dataPrestamista.getDataValue("prestamista_correo"),
                     departamento: "EN MANTENIMIENTO",
+                    provincia: "EN MANTENIMIENTO",
                 };
                 const dataPrestamo = {
                     cant_prestamo: dataSolicitud === null || dataSolicitud === void 0 ? void 0 : dataSolicitud.getDataValue("solictud_monto"),
@@ -182,7 +192,7 @@ class ContratoController {
                     <h4>CONTRATO DE MUTUO DINERARIO N° “CODIGO DE LA PERSONA”</h4>
                     <div>
                     <p class="justify">
-                        Conste por el presente contrato de mutuo dinerario que celebran de una parte ${dataPersona.fullname}, identificado con D.N.I. Nº ${dataPersona.dni}, con domicilio real en “DOMICILIO DE LA PERSONA” ${dataPersona.domicilio}, de la Provincia y Departamento de “DEPARTAMENTO DE LA PERSONA”, a quien en adelante se le denominará EL MUTUANTE y de la otra parte CORPORACIÓN VICAM identificado con RUC. N° 20602294979, debidamente representado Sergio Enrique Chung Chung en calidad de gerente general, identificado con DNI. Nº 46097329 y con domicilio en Calle Eugenio de la Torre Nro. 231 Dpto. 502 distrito de San Miguel de la Provincia y Departamento de Lima, a quien en adelante se le denominará EL MUTUATARIO; en los términos y condiciones siguientes:
+                        Conste por el presente contrato de mutuo dinerario que celebran de una parte ${dataPersona.fullname}, identificado con D.N.I. Nº ${dataPersona.dni}, con domicilio real en ${dataPersona.domicilio}, de la Provincia de ${dataPersona.provincia} y Departamento de ${dataPersona.departamento}, a quien en adelante se le denominará EL MUTUANTE y de la otra parte CORPORACIÓN VICAM identificado con RUC. N° 20602294979, debidamente representado Sergio Enrique Chung Chung en calidad de gerente general, identificado con DNI. Nº 46097329 y con domicilio en Calle Eugenio de la Torre Nro. 231 Dpto. 502 distrito de San Miguel de la Provincia y Departamento de Lima, a quien en adelante se le denominará EL MUTUATARIO; en los términos y condiciones siguientes:
                     </p>
                     <h6>PRIMERO: ANTECEDENTES</h6>
                     <p class="justify">

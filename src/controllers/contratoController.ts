@@ -5,6 +5,7 @@ import CuentaAhorro from "../models/cuentaAhorro";
 import EstadoContrato from "../models/estadoContrato";
 import Prestamista from "../models/prestamista";
 import Solicitud from "../models/solicitud";
+import Tarjeta from "../models/tarjeta";
 var pdf = require("html-pdf");
 var fs = require("fs");
 
@@ -37,13 +38,28 @@ class ContratoController {
         include: [
           {
             model: EstadoContrato,
+            as: 'estado_contrato'
           },
           {
             model: Prestamista,
+            as: 'prestamista'
+          },
+          // {
+          //   model: Solicitud,
+          //   as: 'solicitud'
+          // },
+          {
+            model: CuentaAhorro,
+            as: 'cuenta_ahorro'
           },
           {
-            model: Solicitud,
+            model: Tarjeta,
+            as: 'tarjeta'
           },
+          {
+            model: Banco,
+            as: 'banco'
+          }
         ],
       });
       res.json({
@@ -63,7 +79,7 @@ class ContratoController {
   public async contratoPDF(req: Request, res: Response) {
     try {
       const id = req.params.id;
-      const dataContrato = await Contrato.findByPk(req.params.id);
+      const dataContrato = await Contrato.findByPk(id);
       const dataPrestamista = await Prestamista.findByPk(
         dataContrato?.getDataValue("prestamista_id")
       );
@@ -77,13 +93,6 @@ class ContratoController {
         dataSolicitud?.getDataValue("banco_id")
       );
 
-      const allData = {
-        dataContrato,
-        dataPrestamista,
-        dataSolicitud,
-        dataCuenta,
-        dataBanco,
-      };
 
       const dataPersona = {
         fullname:
@@ -94,6 +103,7 @@ class ContratoController {
         domicilio: dataPrestamista?.getDataValue("prestamista_direccion"),
         correo: dataPrestamista?.getDataValue("prestamista_correo"),
         departamento: "EN MANTENIMIENTO",
+        provincia: "EN MANTENIMIENTO",
       };
 
       const dataPrestamo = {
@@ -179,7 +189,7 @@ class ContratoController {
                     <h4>CONTRATO DE MUTUO DINERARIO N° “CODIGO DE LA PERSONA”</h4>
                     <div>
                     <p class="justify">
-                        Conste por el presente contrato de mutuo dinerario que celebran de una parte ${dataPersona.fullname}, identificado con D.N.I. Nº ${dataPersona.dni}, con domicilio real en “DOMICILIO DE LA PERSONA” ${dataPersona.domicilio}, de la Provincia y Departamento de “DEPARTAMENTO DE LA PERSONA”, a quien en adelante se le denominará EL MUTUANTE y de la otra parte CORPORACIÓN VICAM identificado con RUC. N° 20602294979, debidamente representado Sergio Enrique Chung Chung en calidad de gerente general, identificado con DNI. Nº 46097329 y con domicilio en Calle Eugenio de la Torre Nro. 231 Dpto. 502 distrito de San Miguel de la Provincia y Departamento de Lima, a quien en adelante se le denominará EL MUTUATARIO; en los términos y condiciones siguientes:
+                        Conste por el presente contrato de mutuo dinerario que celebran de una parte ${dataPersona.fullname}, identificado con D.N.I. Nº ${dataPersona.dni}, con domicilio real en ${dataPersona.domicilio}, de la Provincia de ${dataPersona.provincia} y Departamento de ${dataPersona.departamento}, a quien en adelante se le denominará EL MUTUANTE y de la otra parte CORPORACIÓN VICAM identificado con RUC. N° 20602294979, debidamente representado Sergio Enrique Chung Chung en calidad de gerente general, identificado con DNI. Nº 46097329 y con domicilio en Calle Eugenio de la Torre Nro. 231 Dpto. 502 distrito de San Miguel de la Provincia y Departamento de Lima, a quien en adelante se le denominará EL MUTUATARIO; en los términos y condiciones siguientes:
                     </p>
                     <h6>PRIMERO: ANTECEDENTES</h6>
                     <p class="justify">
