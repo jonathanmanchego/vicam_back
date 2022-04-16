@@ -62,9 +62,8 @@ guardar contrato: localhost:3000/api/contratos/
 ////ESTADO SOLICITUD
 
 - 1 PENDIENTE
-- 2 ACEPTADO
+- 2 ACEPTADO - EN CONTRATO
 - 3 RECHAZADO
-- 4 EN CONTRATO
 
 ////ESTADO DE CONTRATO
 

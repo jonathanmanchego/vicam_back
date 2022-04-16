@@ -9,7 +9,9 @@ Provincia.init({
         primaryKey: true,
         autoIncrement: true
     },
-    pais: DataTypes.STRING
+    pais_id: DataTypes.INTEGER,
+    departamento_id: DataTypes.INTEGER,
+    provincia: DataTypes.STRING
 }, {
     sequelize,
     modelName: 'provincias',

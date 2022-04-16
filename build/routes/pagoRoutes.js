@@ -12,6 +12,7 @@ class PagoRoutes {
     }
     config() {
         this.router.post('/', pagoController_1.default.save);
+        this.router.get('/:contrato_id', pagoController_1.default.generarPago);
     }
 }
 const pagoRoutes = new PagoRoutes();

@@ -58,7 +58,7 @@ class SolicitudController {
         status: false,
         msg: 'ocurrio un error',
         dataError: error
-      })
+      });
     }
   }
 

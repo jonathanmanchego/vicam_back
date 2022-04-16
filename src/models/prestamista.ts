@@ -35,16 +35,16 @@ Prestamista.init({
 });
 //FK
 Prestamista.belongsTo(Localia, { as: 'localia', foreignKey: 'localia_id' });
-Localia.hasMany(Prestamista, { as: 'prestamistas', foreignKey: 'localia_id' });
+Localia.hasMany(Prestamista, { as: 'prestamista', foreignKey: 'localia_id' });
 
 Prestamista.belongsTo(Provincia, { as: 'provincia', foreignKey: 'provincia_id' });
-Provincia.hasMany(Prestamista, { as: 'prestamistas', foreignKey: 'provincia_id' });
+Provincia.hasMany(Prestamista, { as: 'prestamista', foreignKey: 'provincia_id' });
 
 Prestamista.belongsTo(Departamento, { as: 'departamento', foreignKey: 'departamento_id' });
-Departamento.hasMany(Prestamista, { as: 'prestamistas', foreignKey: 'departamento_id' });
+Departamento.hasMany(Prestamista, { as: 'prestamista', foreignKey: 'departamento_id' });
 
 Prestamista.belongsTo(Pais, { as: 'pais', foreignKey: 'pais_id' });
-Pais.hasMany(Prestamista, { as: 'prestamistas', foreignKey: 'pais_id' });
+Pais.hasMany(Prestamista, { as: 'prestamista', foreignKey: 'pais_id' });
 
 
 export default Prestamista;

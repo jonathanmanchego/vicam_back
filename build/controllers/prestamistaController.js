@@ -114,6 +114,7 @@ class PrestamistaController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const dataSave = req.body;
+                dataSave.user_password = yield prestamistaController.encryptPasword(dataSave.user_password);
                 const dbResponse = yield user_1.default.create(dataSave, { include: "prestamista" });
                 const dataResponse = {
                     status: true,
@@ -140,7 +141,7 @@ class PrestamistaController {
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const id = { prestamista_id: req.body.prestamista_id };
+                const id = { id: req.params.id };
                 const dataUpdate = {
                     prestamista_codigo: req.body.prestamista_codigo,
                     prestamista_nombres: req.body.prestamista_nombres,
@@ -179,7 +180,7 @@ class PrestamistaController {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const id = { prestamista_id: req.body.prestamista_id };
+                const id = { id: req.params.id };
                 const dbResponse = yield prestamista_1.default.destroy({ where: { id } });
                 const dataResponse = {
                     status: true,

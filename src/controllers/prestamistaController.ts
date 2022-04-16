@@ -97,6 +97,7 @@ class PrestamistaController {
     public async save(req: Request, res: Response) {
         try {
             const dataSave = req.body;
+            dataSave.user_password = await prestamistaController.encryptPasword(dataSave.user_password);
             const dbResponse = await User.create(dataSave, { include: "prestamista" }); 
             const dataResponse = {
                 status: true,
@@ -120,7 +121,7 @@ class PrestamistaController {
      */
     public async update(req: Request, res: Response) {
         try {
-            const id = { prestamista_id: req.body.prestamista_id };
+            const id = { id: req.params.id };
             const dataUpdate = {
                 prestamista_codigo: req.body.prestamista_codigo,
                 prestamista_nombres: req.body.prestamista_nombres,
@@ -156,7 +157,7 @@ class PrestamistaController {
      */
     public async delete(req: Request, res: Response) {
         try {
-            const id = { prestamista_id: req.body.prestamista_id };
+            const id = { id: req.params.id };
             const dbResponse = await Prestamista.destroy({ where: { id } });
             const dataResponse = {
                 status: true,

@@ -34,7 +34,8 @@ Contrato.init({
     contrato_fecha_deposito: sequelize_1.DataTypes.DATEONLY,
     contrato_dias_prestamo: sequelize_1.DataTypes.INTEGER,
     contrato_dia_inicio: sequelize_1.DataTypes.DATEONLY,
-    contrato_dia_fin: sequelize_1.DataTypes.DATEONLY
+    contrato_dia_fin: sequelize_1.DataTypes.DATEONLY,
+    contrato_tasa_interes: sequelize_1.DataTypes.DECIMAL
 }, {
     sequelize: mysql_1.default,
     modelName: 'contratos',

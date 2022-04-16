@@ -17,6 +17,7 @@ Localia.init({
 }, {
     sequelize,
     modelName: 'localias',
+    tableName: 'localias',
     timestamps: false
 });
 
