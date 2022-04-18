@@ -238,15 +238,10 @@ class ContratoController {
     contratoPDF(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                // const id = req.params.id;
                 const dbResponse = yield contratoController.getContratoByPk(req.params.id);
                 const contrato = (dbResponse[0].toJSON());
                 console.log(contrato);
-                // const doc = new pdfKit;
-                // doc.pipe(fs.createWriteStream('file.pdf'));
-                // doc.text(``)
-                // doc.end();
-                contratoToPDF_1.default.getContratoPDF(contrato);
+                const doc = yield contratoToPDF_1.default.getContratoPDF(contrato);
                 res.json({
                     status: true,
                     msg: 'okk!!!',

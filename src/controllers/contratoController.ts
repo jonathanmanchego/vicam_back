@@ -221,15 +221,10 @@ class ContratoController {
 
   public async contratoPDF(req: Request, res: Response) {
     try {
-      // const id = req.params.id;
       const dbResponse = await contratoController.getContratoByPk(req.params.id);
       const contrato = (dbResponse[0].toJSON());
       console.log(contrato);
-      // const doc = new pdfKit;
-      // doc.pipe(fs.createWriteStream('file.pdf'));
-      // doc.text(``)
-      // doc.end();
-      ContratoToPDF.getContratoPDF(contrato);
+      const doc = await ContratoToPDF.getContratoPDF(contrato);
       res.json({
         status: true,
         msg: 'okk!!!',
