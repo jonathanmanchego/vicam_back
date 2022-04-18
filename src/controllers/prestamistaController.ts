@@ -97,6 +97,7 @@ class PrestamistaController {
     public async save(req: Request, res: Response) {
         try {
             const dataSave = req.body;
+            console.log(dataSave);
             dataSave.user_password = await prestamistaController.encryptPasword(dataSave.user_password);
             const dbResponse = await User.create(dataSave, { include: "prestamista" }); 
             const dataResponse = {

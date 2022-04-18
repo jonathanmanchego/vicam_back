@@ -23,6 +23,10 @@ const plazoPagoRoutes_1 = __importDefault(require("./routes/plazoPagoRoutes"));
 const cuentaAhorroRoutes_1 = __importDefault(require("./routes/cuentaAhorroRoutes"));
 const empleadoRoutes_1 = __importDefault(require("./routes/empleadoRoutes"));
 const tipoTarjetaRoutes_1 = __importDefault(require("./routes/tipoTarjetaRoutes"));
+const paisRoutes_1 = __importDefault(require("./routes/paisRoutes"));
+const provinciaRoutes_1 = __importDefault(require("./routes/provinciaRoutes"));
+const departamentoRoutes_1 = __importDefault(require("./routes/departamentoRoutes"));
+const localidadRoutes_1 = __importDefault(require("./routes/localidadRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -52,6 +56,10 @@ class Server {
         this.app.use("/api/cuentasAhorros", cuentaAhorroRoutes_1.default);
         this.app.use("/api/empleados", empleadoRoutes_1.default);
         this.app.use("/api/tipoTarjetas", tipoTarjetaRoutes_1.default);
+        this.app.use("/api/pais", paisRoutes_1.default);
+        this.app.use("/api/provincia", provinciaRoutes_1.default);
+        this.app.use("/api/departamento", departamentoRoutes_1.default);
+        this.app.use("/api/localidad", localidadRoutes_1.default);
         /** RUTA ARCHIVOS */
         this.app.use("/api/upload", validarToken_1.validarToken, uploadRoutes_1.default);
     }

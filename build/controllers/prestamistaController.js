@@ -114,6 +114,7 @@ class PrestamistaController {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const dataSave = req.body;
+                console.log(dataSave);
                 dataSave.user_password = yield prestamistaController.encryptPasword(dataSave.user_password);
                 const dbResponse = yield user_1.default.create(dataSave, { include: "prestamista" });
                 const dataResponse = {

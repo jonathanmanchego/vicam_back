@@ -20,6 +20,10 @@ import plazoPagoRoutes from "./routes/plazoPagoRoutes";
 import cuentaAhorroRoutes from "./routes/cuentaAhorroRoutes";
 import empleadoRoutes from "./routes/empleadoRoutes";
 import tipoTarjetaRoutes from "./routes/tipoTarjetaRoutes";
+import paisRoutes from "./routes/paisRoutes";
+import provinciaRoutes from "./routes/provinciaRoutes";
+import departamentoRoutes from "./routes/departamentoRoutes";
+import localidadRoutes from "./routes/localidadRoutes";
 
 class Server {
   public app: Application;
@@ -56,6 +60,10 @@ class Server {
     this.app.use("/api/cuentasAhorros", cuentaAhorroRoutes);
     this.app.use("/api/empleados", empleadoRoutes);
     this.app.use("/api/tipoTarjetas", tipoTarjetaRoutes);
+    this.app.use("/api/pais", paisRoutes);
+    this.app.use("/api/provincia", provinciaRoutes);
+    this.app.use("/api/departamento", departamentoRoutes);
+    this.app.use("/api/localidad", localidadRoutes);
 
     /** RUTA ARCHIVOS */
     this.app.use("/api/upload", validarToken, uploadRoutes);
