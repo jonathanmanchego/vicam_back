@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import Departamento from "../models/departamento";
+import Localia from "../models/localia";
 
 class LocalidadController {
   public async getAll(req: Request, res: Response): Promise<void> {
     try {
-      const dbResponse = await Departamento.findAll();
+      const dbResponse = await Localia.findAll();
       const dataResponse = {
         stauts: true,
         msg: "Registros obtenidos",
