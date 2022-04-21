@@ -60,11 +60,11 @@ class PrestamistaController {
                 }, {
                     model: Contrato,
                     as: 'contrato',
-                    where: {
-                        estado_contrato_id: {
-                            [Op.ne]: 6 ///DIFERENTE A FINALIZADO
-                        } 
-                    }
+                    // where: {
+                    //     estado_contrato_id: {
+                    //         [Op.ne]: 6 ///DIFERENTE A FINALIZADO
+                    //     } 
+                    // }
                 }, {
                     model: Tarjeta,
                     as: 'tarjeta'
